@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2013/12/01 19:27:21 by jaubert          ###   ########.fr        #
+#    Updated: 2013/12/05 16:27:45 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC =			gcc
 
 CFLAGS =		-Wall -Wextra -Werror -pedantic
 
-HDDIR =			./nfs
+HDDIR =			./
 
 HDFLAGS =		-I$(HDDIR)
 

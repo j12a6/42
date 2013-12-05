@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 17:45:34 by jaubert           #+#    #+#             */
-/*   Updated: 2013/12/05 15:48:20 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/05 16:25:21 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 char	*ft_strstr(const char *s1, const char *s2)
 {
-	int		i;
-	int		j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;
