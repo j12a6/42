@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 10:10:43 by jaubert           #+#    #+#             */
-/*   Updated: 2013/11/27 18:40:22 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/05 12:33:26 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ char	*ft_strncat(char *s1, const char *s2, size_t n)
 
 	i = 0;
 	j = 0;
-	while (s1[i])
+	while (*(s1 + i))
 		i++;
-	while (s2[j] && j < n)
+	while (*(s2 + j) && j < n)
 	{
-		s1[i] = s2[j];
+		*(s1 + i) = *(s2 + j);
 		i++;
 		j++;
 	}
-	s1[i] = '\0';
+	*(s1 + i) = '\0';
 	return (s1);
 }

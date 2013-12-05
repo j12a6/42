@@ -6,29 +6,25 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 09:30:34 by jaubert           #+#    #+#             */
-/*   Updated: 2013/12/01 21:41:54 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/05 15:45:29 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "libft.h"
 
 char	*ft_strrchr(const char *s, int c)
 {
-	int		i;
+	size_t		i;
 
-	if (s == NULL)
-		return (NULL);
-	i = 0;
-	while (*(s + i))
-		i++;
-	i--;
+	i = ft_strlen(s) - 1;
 	if ((char)c == '\0')
-		return ((void *)(s + i + 1));
+		return ((char *)(s + i + 1));
 	while (*(s + i))
 	{
 		if (*(s + i) == (char)c)
-			return ((void *)(s + i));
+			return ((char *)(s + i));
 		i--;
 	}
-	return ('\0');
+	return (NULL);
 }

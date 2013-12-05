@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/29 12:08:33 by jaubert           #+#    #+#             */
-/*   Updated: 2013/11/29 13:30:08 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/05 12:12:49 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len;
 	char	*str;
 
-	if (s1 == NULL)
-		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = (char *)malloc(sizeof(*str) * len);
-	ft_bzero(str, len);
+	str = (char *)malloc(sizeof(*str) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (str == NULL)
 		return (NULL);
 	ft_strcpy(str, (void *)s1);
