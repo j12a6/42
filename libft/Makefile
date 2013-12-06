@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2013/12/06 15:01:27 by jaubert          ###   ########.fr        #
+#    Updated: 2013/12/06 17:10:36 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,8 @@ CFILE =			ft_isspace.c		\
 				ft_lstdel.c			\
 				ft_lstadd.c			\
 				ft_lstiter.c		\
-				ft_lstmap.c
+				ft_lstmap.c			\
+				get_next_line.c
 
 OBJ =			$(CFILE:.c=.o)
 

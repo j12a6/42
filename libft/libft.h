@@ -6,15 +6,17 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:48:55 by jaubert           #+#    #+#             */
-/*   Updated: 2013/12/02 12:58:23 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/06 17:09:10 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef		LIBFT_H
+# define	LIBFT_H
 
-# ifndef T_LIST
-#  define T_LIST
+# define	BUFF_SIZE	100
+
+# ifndef	T_LIST
+#  define	T_LIST
 
 typedef struct		s_list
 {
@@ -85,5 +87,6 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+int					get_next_line(int const fd, char **line);
 
 #endif
