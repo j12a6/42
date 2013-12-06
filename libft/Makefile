@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2013/12/05 16:27:45 by jaubert          ###   ########.fr        #
+#    Updated: 2013/12/06 15:01:27 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,6 +98,6 @@ re:				fclean all
 
 .PHONY:			all clean re fclean
 
-%.o:			>%.c
+%.o:			%.c
 				$(CC) $(CFLAGS) $(HDFLAGS) -c $< -o $@
 
