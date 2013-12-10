@@ -6,14 +6,14 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:48:55 by jaubert           #+#    #+#             */
-/*   Updated: 2013/12/06 17:09:10 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/10 19:05:39 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		LIBFT_H
 # define	LIBFT_H
 
-# define	BUFF_SIZE	100
+# define	BUFF_SIZE	1000
 
 # ifndef	T_LIST
 #  define	T_LIST
