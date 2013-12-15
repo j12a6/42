@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 17:01:51 by jaubert           #+#    #+#             */
-/*   Updated: 2013/12/10 19:51:21 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/15 17:30:37 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,18 @@ static int		ft_is_new_line(char **line, char *buf, int i)
 		return (1);
 }
 
-static int		ft_no_new_line(char **line, char *buf)
+static int		ft_no_new_line(char **line, char *buf, int j)
 {
-	static int		j;
 	char			*tmp;
 
-	j++;
 	tmp = (char *)malloc(sizeof(*tmp) * BUFF_SIZE * j + 1);
 	if (tmp == NULL)
 		return (-1);
 	ft_strclr(tmp);
 	ft_strcpy(tmp, *line);
 	free((void *)*line);
-	*line = (char *)malloc(sizeof(**line) * BUFF_SIZE * (j + 1) + 1);
+	j++;
+	*line = (char *)malloc(sizeof(**line) * BUFF_SIZE * j + 1);
 	if (*line == NULL)
 		return (-1);
 	ft_strclr(*line);
@@ -51,7 +50,7 @@ static int		ft_no_new_line(char **line, char *buf)
 	free((void *)tmp);
 	ft_strcat(*line, buf);
 	buf[0] = '\0';
-	return (1);
+	return (j);
 }
 
 int				get_next_line(int const fd, char **line)
@@ -59,11 +58,12 @@ int				get_next_line(int const fd, char **line)
 	int				ret;
 	static char		buf[BUFF_SIZE + 1];
 	int				i;
+	int				j;
 
-	if (!(*line = (char *)malloc(sizeof(**line) * (BUFF_SIZE + 1))))
-			return (-1);
-	ft_strclr(*line);
+	if (!(*line = ft_strnew(BUFF_SIZE + 1)))
+		return (-1);
 	ret = 1;
+	j = 1;
 	while (ret > 0)
 	{
 		if (buf[0] == '\0')
@@ -76,7 +76,7 @@ int				get_next_line(int const fd, char **line)
 			i++;
 		if (buf[i] == '\n' && ret > 0)
 			return (ft_is_new_line(line, buf, i));
-		else if (ret > 0 &&	ft_no_new_line(line, buf) != 1)
+		else if (ret > 0 &&	(j = ft_no_new_line(line, buf, j)) == -1)
 			return (-1);
 	}
 	return (ret);
