@@ -6,19 +6,15 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 11:02:23 by jaubert           #+#    #+#             */
-/*   Updated: 2013/12/01 14:15:43 by jaubert          ###   ########.fr       */
+/*   Updated: 2013/12/16 19:29:55 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <unistd.h>
 #include "libft.h"
 
 void	ft_putendl(char const *s)
 {
-	while (*s)
-	{
-		ft_putchar(*s);
-		s++;
-	}
+	write(1, s, ft_strlen(s));
 	ft_putchar('\n');
 }
