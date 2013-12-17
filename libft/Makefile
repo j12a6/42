@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2013/12/06 17:24:58 by jaubert          ###   ########.fr        #
+#    Updated: 2013/12/17 17:03:09 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ all:			$(NAME)
 
 $(NAME):		$(OBJ)
 				ar rc $(NAME) $(OBJ)
+				ranlib $(NAME)
 
 clean:
 				rm -f $(OBJ)
