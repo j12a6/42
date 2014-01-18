@@ -6,17 +6,19 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:48:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/10 15:26:35 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/16 13:10:51 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef		LIBFT_H
-# define	LIBFT_H
+#ifndef LIBFT_H
+# define LIBFT_H
 
-# define	BUFF_SIZE	1000
+# include <string.h>
 
-# ifndef	T_LIST
-#  define	T_LIST
+# define BUFF_SIZE	1000
+
+# ifndef T_LIST
+#  define T_LIST
 
 typedef struct		s_list
 {
@@ -85,5 +87,6 @@ ssize_t			ft_putnbr_fd(int n, int fd);
 int				ft_count_wd(char *str, char c);
 char			**ft_strsplit(char const *s, char c);
 int				get_next_line(int const fd, char **line);
+void			ft_free_chtab(char **tab);
 
 #endif	/* !LIBFT_H */

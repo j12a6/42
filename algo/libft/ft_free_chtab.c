@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_free_chtab.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 13:35:12 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/16 11:00:07 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/16 12:10:56 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/17 21:28:29 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strcpy(char *s1, const char *s2)
+#include <stdlib.h>
+
+void	ft_free_chtab(char **tab)
 {
 	int		i;
 
 	i = 0;
-	while (*(s2 + i))
+	while (tab[i])
 	{
-		*(s1 + i) = *(s2 + i);
-		i++;
+		free((void *)tab[i]);
+		++i;
 	}
-	*(s1 + i) = '\0';
-	return (s1);
+	free((void *)tab);
 }

@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 17:01:51 by jaubert           #+#    #+#             */
-/*   Updated: 2013/12/15 17:30:37 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/18 12:17:30 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int				get_next_line(int const fd, char **line)
 			i++;
 		if (buf[i] == '\n' && ret > 0)
 			return (ft_is_new_line(line, buf, i));
-		else if (ret > 0 &&	(j = ft_no_new_line(line, buf, j)) == -1)
+		else if (ret > 0 && (j = ft_no_new_line(line, buf, j)) == -1)
 			return (-1);
 	}
 	return (ret);
