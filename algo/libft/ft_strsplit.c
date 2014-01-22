@@ -6,11 +6,11 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/10 15:07:41 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/22 16:24:51 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/22 17:24:57 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <string.h>
 #include "libft.h"
 
 char	**ft_strsplit(char *s, char c)
@@ -24,7 +24,7 @@ char	**ft_strsplit(char *s, char c)
 	if (s == NULL)
 		return (NULL);
 	nb_word = ft_count_word(s, c);
-	if (!(tab = (char **)malloc(sizeof(char *) * (nb_word + 1))))
+	if (!(tab = (char **)gmalloc(sizeof(char *) * (nb_word + 1))))
 		return (NULL);
 	k = 0;
 	i = 0;
@@ -33,7 +33,7 @@ char	**ft_strsplit(char *s, char c)
 		while (*(s + i) && *(s + i) == c)
 			++i;
 		size = ft_word_size(s + i, c);
-		if (!(tab[k] = (char *)malloc(sizeof(char) * (size + 1))))
+		if (!(tab[k] = (char *)gmalloc(sizeof(char) * (size + 1))))
 			return (NULL);
 		ft_strncpy(tab[k], s + i, size);
 		tab[k][size] = '\0';

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel.c                                        :+:      :+:    :+:   */
+/*   gofree.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/22 13:25:33 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/22 17:13:40 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/22 16:55:00 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/22 16:59:23 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include "libft.h"
 
-void	ft_strdel(char **as)
+void	gofree(void *ptr)
 {
-	if (as == NULL)
-		return ;
-	gofree((void *)*as);
-	*as = NULL;
+	ft_garb(1, ptr);
 }

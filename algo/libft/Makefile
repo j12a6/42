@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2014/01/22 16:23:11 by jaubert          ###   ########.fr        #
+#    Updated: 2014/01/22 17:14:24 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME =			libft.a
 
 CC =			gcc
 
-CFLAGS =		-Wall -Wextra -Werror -pedantic
+CFLAGS =		-Wall -Wextra -Werror -pedantic -ansi
 
 HDDIR =			./includes/
 
@@ -80,11 +80,12 @@ CFILE =			ft_isspace.c		\
 				get_next_line.c		\
 				ft_free_chtab.c		\
 				ft_cpy_chtab.c		\
-				ft_listnew.c		\
 				gmalloc.c			\
 				ft_garb.c			\
 				gclean.c			\
-				gfree.c
+				goclean.c			\
+				gfree.c				\
+				gofree.c
 
 OBJ =			$(CFILE:.c=.o)
 

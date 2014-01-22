@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:48:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/22 15:32:27 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/22 17:01:03 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,12 @@ char			**ft_strsplit(char *s, char c);
 int				get_next_line(int const fd, char **line);
 void			ft_free_chtab(char **tab);
 char			**ft_cpy_chtab(char **ch2);
-t_list			*ft_listnew(void *ptr);
 void			*gmalloc(size_t size);
 int				ft_garb(int flag, void *ptr);
 void			gclean(t_list **list);
+void			goclean(void);
 void			gfree(void *ptr, t_list **list);
+void			gofree(void *ptr);
 void			ft_print_list(t_list *list);
 
 #endif	/* !LIBFT_H */

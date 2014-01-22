@@ -6,14 +6,15 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 13:23:43 by jaubert           #+#    #+#             */
-/*   Updated: 2013/11/28 16:03:06 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/22 17:05:40 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <string.h>
+#include "libft.h"
 
 void	ft_memdel(void **ap)
 {
-	free(*ap);
+	gofree(*ap);
 	*ap = NULL;
 }

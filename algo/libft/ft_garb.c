@@ -6,14 +6,25 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 15:35:56 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/22 16:21:35 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/22 17:04:09 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
 #include "libft.h"
 
-int		ft_garb(int flag, void *ptr)
+static t_list	*ft_listnew(void *ptr)
+{
+	t_list	*list;
+
+	if (!(list = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	list->content = ptr;
+	list->next = NULL;
+	return (list);
+}
+
+int				ft_garb(int flag, void *ptr)
 {
 	static t_list	*list = NULL;
 	t_list			*tmp;

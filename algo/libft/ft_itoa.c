@@ -6,12 +6,11 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/29 16:36:37 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/10 11:28:16 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/22 16:45:33 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
-#include <stdlib.h>
 #include "libft.h"
 
 static char		*ft_cpy_itoa(char *str, int c, int i, int neg)
@@ -44,8 +43,7 @@ char			*ft_itoa(int c)
 	if (c < 0)
 		neg = 1;
 	i = ft_count_digit(c);
-	str = (char *)malloc(sizeof(*str) * ((i + neg + 1)));
-	if (str == NULL)
+	if (!(str = (char *)gmalloc(sizeof(*str) * ((i + neg + 1)))))
 		return (NULL);
 	if (c == -2147483648)
 		ft_strcpy(str, "-2147483648");
