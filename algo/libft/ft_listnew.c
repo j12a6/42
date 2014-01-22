@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_listnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 20:27:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/21 15:28:29 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/21 16:36:25 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/22 12:43:43 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strncpy(char *s1, const char *s2, size_t n)
+t_list	*ft_listnew(void *ptr)
 {
-	size_t	i;
+	t_list	*list;
 
-	i = 0;
-	while (*(s2 + i) && i < n)
-	{
-		*(s1 + i) = *(s2 + i);
-		i++;
-	}
-	while (i < n)
-	{
-		*(s1 + i) = '\0';
-		i++;
-	}
-	*(s1 + i) = '\0';
-	return (s1);
+	if (!(list = (t_list *)malloc(sizeof(t_list))))
+		return (NULL);
+	list->content = ptr;
+	list->next = NULL;
+	return (list);
 }

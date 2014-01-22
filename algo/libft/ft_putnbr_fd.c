@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/19 15:24:04 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/10 12:32:05 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/21 14:23:02 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ ssize_t		ft_putnbr_fd(int n, int fd)
 
 	i = 0;
 	if (n == -2147483648)
-	{
-		i += write(fd, "-2147483648", 11);
-		return (i);
-	}
+		return (write(fd, "-2147483648", 11));
 	if (n < 0)
 	{
 		i += ft_putchar_fd('-', fd);

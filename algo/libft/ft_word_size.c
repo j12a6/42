@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_word_size.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 20:27:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/21 15:28:29 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/21 10:48:45 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/21 15:28:24 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-
-char	*ft_strncpy(char *s1, const char *s2, size_t n)
+int		ft_word_size(char *str, char c)
 {
-	size_t	i;
+	int		i;
+	int		size_of_word;
 
 	i = 0;
-	while (*(s2 + i) && i < n)
+	while (*(str + i) && *(str + i) == c)
+		++i;
+	size_of_word = 0;
+	while (*(str + i) && *(str + i) != c)
 	{
-		*(s1 + i) = *(s2 + i);
-		i++;
+		++i;
+		++size_of_word;
 	}
-	while (i < n)
-	{
-		*(s1 + i) = '\0';
-		i++;
-	}
-	*(s1 + i) = '\0';
-	return (s1);
+	return (size_of_word);
 }

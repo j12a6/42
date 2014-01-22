@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_count_wd.c                                      :+:      :+:    :+:   */
+/*   ft_cpy_chtab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/10 15:14:36 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/10 15:26:32 by jaubert          ###   ########.fr       */
+/*   Created: 2013/12/29 12:18:51 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/21 09:23:59 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int		ft_count_wd(char *str, char c)
+char	**ft_cpy_chtab(char **ch2)
 {
-	int		in_word;
+	char	**tab;
+	int		i;
 	int		n;
 
-	if (str == NULL)
-		return (-1);
-	in_word = 0;
-	n = 0;
-	while (*str)
+	i = 0;
+	while (ch2[i])
+		i++;
+	if (!(tab = (char **)malloc(sizeof(char *) * (i + 1))))
+		return (NULL);
+	n = i;
+	i = 0;
+	while (i < n)
 	{
-		if (*str == c)
-			in_word = 0;
-		else
-		{
-			if (in_word == 0)
-				++n;
-			in_word = 1;
-		}
-		++str;
+		if (!(tab[i] = (char *)malloc(sizeof(char) * ft_strlen(ch2[i]) + 1)))
+			return (NULL);
+		ft_strcpy(tab[i], ch2[i]);
+		++i;
 	}
-	return (n);
+	return (tab);
 }

@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   gmalloc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 20:27:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/21 15:28:29 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/21 15:29:44 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/22 16:10:42 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strncpy(char *s1, const char *s2, size_t n)
+void	*gmalloc(size_t size)
 {
-	size_t	i;
+	void	*buf;
 
-	i = 0;
-	while (*(s2 + i) && i < n)
+	if (!(buf = malloc(size)))
 	{
-		*(s1 + i) = *(s2 + i);
-		i++;
+		ft_garb(0, NULL);
+		return (NULL);
 	}
-	while (i < n)
+	if (ft_garb(2, buf) == -1)
 	{
-		*(s1 + i) = '\0';
-		i++;
+		ft_garb(0, NULL);
+		return (NULL);
 	}
-	*(s1 + i) = '\0';
-	return (s1);
+	return (buf);
 }

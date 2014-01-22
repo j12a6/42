@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_garb.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 20:27:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/21 15:28:29 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/21 15:35:56 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/22 16:21:35 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include "libft.h"
 
-char	*ft_strncpy(char *s1, const char *s2, size_t n)
+int		ft_garb(int flag, void *ptr)
 {
-	size_t	i;
+	static t_list	*list = NULL;
+	t_list			*tmp;
 
-	i = 0;
-	while (*(s2 + i) && i < n)
+	if (!list && flag == 2)
 	{
-		*(s1 + i) = *(s2 + i);
-		i++;
+		if (!(list = ft_listnew(ptr)))
+			return (-1);
+		return (0);
 	}
-	while (i < n)
+	if (flag == 0)
 	{
-		*(s1 + i) = '\0';
-		i++;
+		gclean(&list);
+		return (-1);
 	}
-	*(s1 + i) = '\0';
-	return (s1);
+	else if (flag == 1)
+		gfree(ptr, &list);
+	else
+	{
+		if (!(tmp = ft_listnew(ptr)))
+			return (-1);
+		tmp->next = list;
+		list = tmp;
+	}
+	return (0);
 }

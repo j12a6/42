@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:48:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/16 13:10:51 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/22 15:32:27 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 typedef struct		s_list
 {
 	void			*content;
-	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
 
@@ -73,7 +72,6 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s);
-char			**ft_strsplit(char const *s, char c);
 char			*ft_itoa(int n);
 ssize_t			ft_putchar(char c);
 ssize_t			ft_putstr(const char *str);
@@ -84,9 +82,17 @@ ssize_t			ft_putchar_fd(char c, int fd);
 ssize_t			ft_putstr_fd(const char *s, int fd);
 ssize_t			ft_putendl_fd(const char *s, int fd);
 ssize_t			ft_putnbr_fd(int n, int fd);
-int				ft_count_wd(char *str, char c);
-char			**ft_strsplit(char const *s, char c);
+int				ft_count_word(char *str, char c);
+int				ft_word_size(char *str, char c);
+char			**ft_strsplit(char *s, char c);
 int				get_next_line(int const fd, char **line);
 void			ft_free_chtab(char **tab);
+char			**ft_cpy_chtab(char **ch2);
+t_list			*ft_listnew(void *ptr);
+void			*gmalloc(size_t size);
+int				ft_garb(int flag, void *ptr);
+void			gclean(t_list **list);
+void			gfree(void *ptr, t_list **list);
+void			ft_print_list(t_list *list);
 
 #endif	/* !LIBFT_H */

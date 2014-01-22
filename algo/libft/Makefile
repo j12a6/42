@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2014/01/16 13:11:04 by jaubert          ###   ########.fr        #
+#    Updated: 2014/01/22 16:23:11 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,10 +74,17 @@ CFILE =			ft_isspace.c		\
 				ft_putendl_fd.c		\
 				ft_putstr_fd.c		\
 				ft_putnbr_fd.c		\
-				ft_count_wd.c		\
+				ft_count_word.c		\
+				ft_word_size.c		\
 				ft_strsplit.c		\
 				get_next_line.c		\
-				ft_free_chtab.c
+				ft_free_chtab.c		\
+				ft_cpy_chtab.c		\
+				ft_listnew.c		\
+				gmalloc.c			\
+				ft_garb.c			\
+				gclean.c			\
+				gfree.c
 
 OBJ =			$(CFILE:.c=.o)
 

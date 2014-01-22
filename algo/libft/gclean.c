@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   gclean.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 20:27:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/21 15:28:29 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/21 16:07:27 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/22 16:21:44 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
+#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_strncpy(char *s1, const char *s2, size_t n)
+void	gclean(t_list **list)
 {
-	size_t	i;
+	t_list	*first;
+	t_list	*tmp;
 
-	i = 0;
-	while (*(s2 + i) && i < n)
+	first = *list;
+	while (first)
 	{
-		*(s1 + i) = *(s2 + i);
-		i++;
+		tmp = first;
+		free(first->content);
+		first = first->next;
+		free((void *)tmp);
 	}
-	while (i < n)
-	{
-		*(s1 + i) = '\0';
-		i++;
-	}
-	*(s1 + i) = '\0';
-	return (s1);
+	*list = NULL;
 }

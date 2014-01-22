@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_count_word.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/26 20:27:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/21 15:28:29 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/10 15:14:36 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/21 15:28:22 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 
-char	*ft_strncpy(char *s1, const char *s2, size_t n)
+int		ft_count_word(char *str, char c)
 {
-	size_t	i;
+	int		in_word;
+	int		n;
 
-	i = 0;
-	while (*(s2 + i) && i < n)
+	if (str == NULL)
+		return (-1);
+	in_word = 0;
+	n = 0;
+	while (*str)
 	{
-		*(s1 + i) = *(s2 + i);
-		i++;
+		if (*str == c)
+			in_word = 0;
+		else
+		{
+			if (in_word == 0)
+				++n;
+			in_word = 1;
+		}
+		++str;
 	}
-	while (i < n)
-	{
-		*(s1 + i) = '\0';
-		i++;
-	}
-	*(s1 + i) = '\0';
-	return (s1);
+	return (n);
 }

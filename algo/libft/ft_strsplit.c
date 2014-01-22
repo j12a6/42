@@ -6,61 +6,40 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/10 15:07:41 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/10 15:26:33 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/22 16:24:51 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
 #include <stdlib.h>
 #include "libft.h"
 
-static int		ft_size_word(char const *s, char c, int i)
+char	**ft_strsplit(char *s, char c)
 {
-	int		m;
-
-	m = 0;
-	while (*(s + i++) != c && *(s + i++))
-		m++;
-	return (m);
-}
-
-static char		**ft_strsplit_next(char **s3, char const *s, char c)
-{
+	char	**tab;
 	int		i;
-	int		j;
-	char	*s2;
 	int		k;
-
-	i = 0;
-	k = 0;
-	while (*(s + i))
-	{
-		while (*(s + i) == c && *(s + i))
-			i++;
-		if (*(s + i))
-		{
-			j = 0;
-			s2 = (char *)malloc(sizeof(*s2) * (ft_size_word(s, c, i) + 1));
-			while (*(s + i) != c && *(s + i))
-				*(s2 + j++) = *(s + i++);
-			*(s2 + j) = '\0';
-			*(s3 + k++) = s2;
-		}
-	}
-	*(s3 + k) = '\0';
-	return (s3);
-}
-
-char			**ft_strsplit(char const *s, char c)
-{
-	char	**s3;
+	int		nb_word;
+	int		size;
 
 	if (s == NULL)
+		return (NULL);
+	nb_word = ft_count_word(s, c);
+	if (!(tab = (char **)malloc(sizeof(char *) * (nb_word + 1))))
+		return (NULL);
+	k = 0;
+	i = 0;
+	while (k < nb_word)
 	{
-		s3 = (char **)malloc(sizeof(*s3) * (1 + 1));
-		*s3 = NULL;
-		return (s3);
+		while (*(s + i) && *(s + i) == c)
+			++i;
+		size = ft_word_size(s + i, c);
+		if (!(tab[k] = (char *)malloc(sizeof(char) * (size + 1))))
+			return (NULL);
+		ft_strncpy(tab[k], s + i, size);
+		tab[k][size] = '\0';
+		i += size;
+		++k;
 	}
-	s3 = (char **)malloc(sizeof(*s3) * (ft_count_wd((char *)s, c) + 1));
-	return (ft_strsplit_next(s3, s, c));
+	tab[k] = NULL;
+	return (tab);
 }
