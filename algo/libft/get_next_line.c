@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/02 17:01:51 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/23 14:58:18 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/23 15:47:06 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ static int		ft_no_new_line(char **line, char *buf, int j)
 {
 	char			*tmp;
 
-	if (!(tmp = (char *)gmalloc(sizeof(*tmp) * BUFF_SIZE * j + 1)));
+	if (!(tmp = (char *)gmalloc(sizeof(*tmp) * BUFF_SIZE * j + 1)))
 		return (-1);
 	ft_strclr(tmp);
 	ft_strcpy(tmp, *line);
 	gofree((void *)*line);
 	j++;
-	if (!(*line = (char *)gmalloc(sizeof(**line) * BUFF_SIZE * j + 1)));
+	if (!(*line = (char *)gmalloc(sizeof(**line) * BUFF_SIZE * j + 1)))
 		return (-1);
 	ft_strclr(*line);
 	ft_strcpy(*line, tmp);
