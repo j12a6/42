@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2014/01/22 17:14:24 by jaubert          ###   ########.fr        #
+#    Updated: 2014/01/23 10:25:08 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,8 +75,11 @@ CFILE =			ft_isspace.c		\
 				ft_putstr_fd.c		\
 				ft_putnbr_fd.c		\
 				ft_count_word.c		\
+				ft_count_word_p.c	\
 				ft_word_size.c		\
+				ft_word_size_p.c	\
 				ft_strsplit.c		\
+				ft_strparse.c		\
 				get_next_line.c		\
 				ft_free_chtab.c		\
 				ft_cpy_chtab.c		\

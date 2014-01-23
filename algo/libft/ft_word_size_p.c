@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_word_size_p.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/29 11:30:21 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/23 08:16:31 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/21 10:48:45 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/23 08:22:48 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_isspace(int c)
+#include "libft.h"
+
+int		ft_word_size_p(char *str)
 {
-	if (c == ' ' || c == '\n' || c == '\v' || c == '\t' || c == '\r'
-		|| c == '\f')
-		return (1);
-	return (0);
+	int		i;
+	int		size_of_word;
+
+	i = 0;
+	while (*(str + i) && ft_isspace(*(str + i)) == 1)
+		++i;
+	size_of_word = 0;
+	while (*(str + i) && !ft_isspace(*(str + i)))
+	{
+		++i;
+		++size_of_word;
+	}
+	return (size_of_word);
 }

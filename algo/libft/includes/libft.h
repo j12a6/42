@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/21 16:48:55 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/22 17:01:03 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/01/23 10:20:50 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,11 @@ ssize_t			ft_putstr_fd(const char *s, int fd);
 ssize_t			ft_putendl_fd(const char *s, int fd);
 ssize_t			ft_putnbr_fd(int n, int fd);
 int				ft_count_word(char *str, char c);
+int				ft_count_word_p(char *str);
 int				ft_word_size(char *str, char c);
+int				ft_word_size_p(char *str);
 char			**ft_strsplit(char *s, char c);
+char			**ft_strparse(char *str);
 int				get_next_line(int const fd, char **line);
 void			ft_free_chtab(char **tab);
 char			**ft_cpy_chtab(char **ch2);

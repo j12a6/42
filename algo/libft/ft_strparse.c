@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsplit.c                                      :+:      :+:    :+:   */
+/*   ft_strparse.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/01/10 15:07:41 by jaubert           #+#    #+#             */
-/*   Updated: 2014/01/23 10:38:08 by jaubert          ###   ########.fr       */
+/*   Created: 2014/01/21 10:40:36 by jaubert           #+#    #+#             */
+/*   Updated: 2014/01/23 10:38:06 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "libft.h"
 
-char	**ft_strsplit(char *s, char c)
+char		**ft_strparse(char *str)
 {
 	char	**tab;
 	int		n;
 	int		nb_word;
 	int		word_size;
 
-	if (s == NULL)
+	if (str == NULL)
 		return (NULL);
-	nb_word = ft_count_word(s, c);
+	nb_word = ft_count_word_p(str);
 	if (!(tab = (char **)gmalloc(sizeof(char *) * (nb_word + 1))))
 		return (NULL);
 	n = 0;
 	while (n < nb_word)
 	{
-		word_size = ft_word_size(s, c);
+		word_size = ft_word_size_p(str);
 		if (!(tab[n] = (char *)gmalloc(sizeof(char) * (word_size + 1))))
 			return (NULL);
-		while (*s && *s == c)
-			++s;
-		ft_strncpy(tab[n], s, word_size);
-		s += word_size;
+		while (*str && ft_isspace(*str) == 1)
+			++str;
+		ft_strncpy(tab[n], str, word_size);
+		str += word_size;
 		++n;
 	}
 	tab[n] = NULL;
