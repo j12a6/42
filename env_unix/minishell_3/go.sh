@@ -1,0 +1,1 @@
+gcc -Werror -Wextra -Wall ft_list_become_chtab.c ft_cut_copy_or_paste.c ft_historic.c is_key_change_line.c ft_len.c is_key_cut_paste.c is_key_copy.c is_key_fast_move.c fast_cursor_move.c is_key_arrow.c change_terminal_mode.c ft_print.c save_final_list.c ft_list_put_elem.c ft_list_del.c ft_putc.c is_key_del_or_enter.c -Iincludes -ltermcap libft/libft.a -Ilibft/includes
