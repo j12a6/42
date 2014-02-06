@@ -6,10 +6,11 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/06 12:45:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/06 12:51:04 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/06 13:07:14 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "ft_minishell3.h"
 
 int		ft_list_become_chtab(char **line, t_sl **list)
