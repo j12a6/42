@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 16:26:49 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 19:36:13 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/07 20:49:55 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ int		ft_treat_cmd_line(char *line, char **env)
 {
 	int		i;
 	char	**all;
-	char	**e_cp;
 	int		exit;
 
-	if (!(e_cp = ft_ts_copy(env)))
-		return (-1);
 	if (!(all = ft_strsplit(line, ';')))
 		return (-1);
 	exit = -2;
@@ -33,7 +30,7 @@ int		ft_treat_cmd_line(char *line, char **env)
 			break ;
 		if (exit == -2)
 		{
-			if (all[i][0] && !(e_cp = ft_run_big_part(all[i], e_cp)))
+			if (all[i][0] && !(env = ft_run_big_part(all[i], env)))
 			{
 				exit = -2;
 				break ;

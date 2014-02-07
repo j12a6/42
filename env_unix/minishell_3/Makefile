@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/11/27 15:40:48 by jaubert           #+#    #+#              #
-#    Updated: 2014/02/07 12:55:03 by jaubert          ###   ########.fr        #
+#    Updated: 2014/02/07 20:43:36 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ AFILE =			$(LIBDIR)libft.a
 
 CC =			gcc
 
-CFLAGS =		-Wall -Wextra -Werror
+CFLAGS =		-Wall -Wextra -Werror -g
 
 HDDIR =			includes/
 

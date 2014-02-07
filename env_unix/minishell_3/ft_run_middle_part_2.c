@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 20:52:31 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/06 17:04:20 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/07 20:49:52 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static char		**ft_cpy_chtab_untill_redir(char **all)
 		if (!(cmd = ft_add_line_chtab(all)))
 			return (NULL);
 	}
-	if (!(cmd = ft_cpy_chtab_untill_redir_2(all)))
+	else if (!(cmd = ft_cpy_chtab_untill_redir_2(all)))
 		return (NULL);
 	return (cmd);
 }

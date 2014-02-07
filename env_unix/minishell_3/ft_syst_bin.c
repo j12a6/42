@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/29 12:11:35 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 19:01:02 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/07 20:49:57 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char			**ft_syst_bin(char **all, char **env)
 		wait(&father);
 		return (env);
 	}
-	if (father == 0)
+	else if (father == 0)
 	{
 		if (execve(path, all, env) == -1)
 		{
