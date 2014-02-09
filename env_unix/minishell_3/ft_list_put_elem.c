@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 15:06:03 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 12:00:00 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 16:46:29 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,17 @@ static int		ft_list_put_elem_2(char c, t_sl **sl, int cursor)
 		(*sl)->prev = new_elem;
 		new_elem->next = *sl;
 		*sl = new_elem;
+		return (0);
 	}
-	else
-	{
-		i = -1;
-		while (++i < cursor - 1)
-			move = move->next;
-		tmp = move;
+	i = -1;
+	while (++i < cursor - 1)
 		move = move->next;
-		tmp->next = new_elem;
-		new_elem->prev = tmp;
-		new_elem->next = move;
-		move->prev = new_elem;
-	}
+	tmp = move;
+	move = move->next;
+	tmp->next = new_elem;
+	new_elem->prev = tmp;
+	new_elem->next = move;
+	move->prev = new_elem;
 	return (0);
 }
 

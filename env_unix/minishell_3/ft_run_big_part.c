@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 18:19:32 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/06 17:04:03 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 19:37:59 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,23 @@ static char		**ft_run_the_pipe(char *line, char **env)
 
 char			**ft_run_big_part(char *line, char **env)
 {
-	if (!ft_check_pipe(line))
+	int		a;
+
+	a = 0;
+	if (a != 0)
 	{
-		if (!(env = ft_run_the_pipe(line, env)))
-			return (NULL);
+		if (!ft_check_pipe(line))
+		{
+			if (!(env = ft_run_the_pipe(line, env)))
+				return (NULL);
+		}
+		else
+		{
+			if (!(env = ft_run_middle_part_1(line, env)))
+				return (NULL);
+		}
 	}
-	else
-	{
-		if (!(env = ft_run_middle_part_1(line, env)))
-			return (NULL);
-	}
+	if (!(env = ft_run_small_part(line, env)))
+		return (NULL);
 	return (env);
 }

@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 11:07:53 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/06 16:16:49 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 18:28:40 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,21 +34,13 @@ static char		*ft_find_oldpwd(char **env)
 	return (env[i] + 7);
 }
 
-char			**ft_cd(char **all, char **env)
+static void		ft_cd_2(char **all, char **env, int *success)
 {
-	char	*cur_dir;
-	char	*buf;
-	int		success;
-
-	success = 0;
-	if (!(buf = (char *)gmalloc(sizeof(char) * (2048 + 1))))
-		return (NULL);
-	cur_dir = getcwd(buf, 1024);
 	if (!all[1])
 	{
 		if (chdir(ft_find_home(env)) == -1)
 			ft_putendl_fd("cd: error going to home directory", 2);
-		success = 1;
+		*success = 1;
 	}
 	else if (all[2])
 		ft_putendl("cd: too many arguments");
@@ -56,12 +48,25 @@ char			**ft_cd(char **all, char **env)
 	{
 		if (chdir(ft_find_oldpwd(env)) == -1)
 			ft_putendl_fd("cd: error going to last directory", 2);
-		success = 1;
+		*success = 1;
 	}
 	else if (!chdir(all[1]))
-		success = 1;
+		*success = 1;
 	else
 		ft_putendl("cd: not a directory");
+}
+
+char			**ft_cd(char **all, char **env)
+{
+	char	*cur_dir;
+	char	*buf;
+	int		success;
+
+	success = 0;
+	if (!(buf = (char *)gmalloc(sizeof(char) * (1024 + 1))))
+		return (NULL);
+	cur_dir = getcwd(buf, 1024);
+	ft_cd_2(all, env, &success);
 	if (success == 1)
 	{
 		if (!(env = ft_change_env("OLDPWD", cur_dir, env)))

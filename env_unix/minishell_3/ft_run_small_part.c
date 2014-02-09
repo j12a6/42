@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/25 18:16:57 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 20:49:53 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 19:31:33 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int		ft_check_my_bin_1(char *cmd)
 static int		ft_check_my_bin_2(char *cmd)
 {
 	if (!ft_strcmp(cmd, "cd") || !ft_strcmp(cmd, "setenv")
-			|| !ft_strcmp(cmd, "unsetenv"))
+		|| !ft_strcmp(cmd, "unsetenv"))
 		return (0);
 	return (-1);
 }

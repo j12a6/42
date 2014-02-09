@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/01 13:23:21 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 20:04:41 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 18:34:58 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int		ft_init_terminal_mode(void)
 	return (0);
 }
 
-int		ft_default_terminal_mode(void)
+int				ft_default_terminal_mode(void)
 {
 	struct termios	tattr;
 
@@ -66,13 +66,12 @@ int				main(int ac, char **av, char **env)
 	ft_init_terminal_mode();
 	while (1)
 	{
-		if ((exit = ft_save_cmd_line(&hl, &line)) == -1)
+		if (ft_save_cmd_line(&hl, &line) == -1)
 			break ;
-		if ((exit = ft_treat_cmd_line(line, env_cp)) == -1
-			|| (exit != -2 && exit != -3))
+		if (!(env_cp = ft_treat_cmd_line(line, env_cp, &exit))
+			|| (exit != -1 && exit != -2 && exit != -3))
 			break ;
 	}
-/*	ft_default_terminal_mode();*/
 	goclean();
 	return (exit);
 }

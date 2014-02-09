@@ -6,14 +6,14 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/07 12:31:04 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 18:21:13 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 15:59:14 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include "ft_minishell3.h"
 
-static void		ft_move_hist(t_hl **hl, t_save *save, t_sl **sl, int flag)
+static void	ft_move_hist(t_hl **hl, t_save *save, t_sl **sl, int flag)
 {
 	if ((*hl)->next && flag == 1)
 		*hl = (*hl)->next;
@@ -27,7 +27,7 @@ static void		ft_move_hist(t_hl **hl, t_save *save, t_sl **sl, int flag)
 		--(save->hist_nb);
 }
 
-int				ft_move_in_history(char *buf, t_sl **sl, t_save *save, t_hl **move)
+int			ft_move_in_history(char *buf, t_sl **sl, t_save *save, t_hl **move)
 {
 	if (KEY_ARROW_UP(buf) && *move)
 	{

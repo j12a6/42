@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/27 18:08:25 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 18:21:26 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 18:31:24 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		ft_list_del_elem(t_sl **sl, int cursor);
 int			ft_print(t_sl *sl, t_save *save, int old_line);
 int			ft_cut_copy_or_paste(char *buf, t_sl **sl, t_save *save);
 int			ft_fast_move(char *buf, t_sl **sl, int *cursor);
-int		ft_put_or_del_char(char *buf, t_sl **sl, t_save *save, t_hl **hl);
+int			ft_put_or_del_char(char *buf, t_sl **sl, t_save *save, t_hl **hl);
 int			ft_little_move(char *buf, t_sl **l, int *cursor, int co);
 int			ft_save_cmd_line(t_hl **hl, char **line);
 
@@ -133,7 +133,7 @@ char		**ft_double_right_redir(char **cmd, char *file, char **env);
 char		**ft_run_middle_part_2(char **all, char **env);
 char		**ft_run_middle_part_1(char *line, char **env);
 char		**ft_run_big_part(char *line, char **env);
-int			ft_treat_cmd_line(char *line, char **env);
+char		**ft_treat_cmd_line(char *line, char **env, int *exit);
 
 /*
 ** My built-in

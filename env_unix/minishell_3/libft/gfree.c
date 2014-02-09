@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/21 15:46:31 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 11:09:45 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 18:33:25 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void		ft_free_one_elem(void *ptr, t_list **list)
 	}
 }
 
-void	gfree(void *ptr, t_list **list)
+void			gfree(void *ptr, t_list **list)
 {
 	t_list		*first;
 
@@ -52,7 +52,5 @@ void	gfree(void *ptr, t_list **list)
 		free((void *)first);
 	}
 	else
-	{
 		ft_free_one_elem(ptr, list);
-	}
 }

@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/24 15:41:17 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/06 16:17:20 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 18:31:56 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static char		*ft_put_my_env_line(char *my_key, char *my_val)
 		return (NULL);
 	if (!(str = ft_strjoin(tmp, my_val)))
 		return (NULL);
+	gofree((void *)tmp);
 	return (str);
 }
 
@@ -89,6 +90,5 @@ char			**ft_change_env(char *my_key, char *my_val, char **env)
 			return (NULL);
 	}
 	new_env[nb_lines + ft_key_already_exist(my_key, env)] = NULL;
-	ft_ts_free(env);
 	return (new_env);
 }

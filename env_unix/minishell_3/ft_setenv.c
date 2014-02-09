@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/28 12:55:59 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/06 17:07:00 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 17:42:19 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ char	**ft_setenv(char **all, char **env)
 	else
 	{
 		if (!(env = ft_change_env(all[1], all[2], env)))
-		{
 			return (NULL);
-		}
 	}
 	return (env);
 }

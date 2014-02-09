@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/02/03 22:01:20 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/07 12:43:46 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/02/09 17:00:05 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,20 @@ int				ft_print(t_sl *sl, t_save *save, int old_line)
 {
 	int		cursor_line;
 	int		i;
+	char	*tmp;
 
 	cursor_line = (P_LEN + save->cursor) / save->co;
 	ft_clean(old_line, cursor_line);
-	i = cursor_line;
-	while (i > 0)
-	{
+	i = cursor_line + 1;
+	while (--i > 0)
 		tputs(tgetstr("up", NULL), 1, ft_putc);
-		--i;
-	}
 	tputs(tgetstr("cd", NULL), 1, ft_putc);
 	ft_putstr("_$> ");
 	ft_slist_print(sl, save->co);
 	if (save->cursor != ft_slist_len(sl))
 	{
-		tputs(tgoto(tgetstr("ch", NULL), 0, (P_LEN + save->cursor) % save->co), 1, ft_putc);
+		tmp = tgoto(tgetstr("ch", NULL), 0, (P_LEN + save->cursor) % save->co);
+		tputs(tmp, 1, ft_putc);
 		i = (P_LEN + ft_slist_len(sl)) / save->co;
 		while (i > cursor_line)
 		{
