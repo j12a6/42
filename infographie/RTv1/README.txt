@@ -14,4 +14,11 @@ normale = vecteur(x,y,z -> double)
 indice de refraction = ind -> double
 color = 30,45,75 (G,B,R -> int)
 
+#Cylinder
+centre = vecteur(x,y,z -> double)
+axe.revolution = vecteur(x,y,z -> double)
+rayon = r -> double
+indice de refraction = ind -> double
+color = 30,45,75 (G,B,R -> int)
+
 #End

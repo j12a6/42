@@ -6,7 +6,7 @@
 #    By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/06 16:07:00 by jaubert           #+#    #+#              #
-#    Updated: 2014/02/13 18:18:26 by makoudad         ###   ########.fr        #
+#    Updated: 2014/02/16 13:46:39 by makoudad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,18 +22,21 @@ HDFLAGS =		-I$(HDDIR) -I./includes/
 
 HDDIR =			./libft/includes/
 
-CFILE =			main.c					\
-				raytracing.c			\
-				sol_equ_quadratic.c		\
-				operation_on_vectors.c	\
-				create_light_list.c		\
-				create_plane_list.c		\
-				create_sphere_list.c	\
-				find_nearest_plane.c	\
-				find_nearest_sphere.c	\
-				ft_atod.c				\
-				nearest_object.c		\
-				save_scene.c			\
+CFILE =			main.c						\
+				raytracing.c				\
+				sol_equ_quadratic.c			\
+				operation_on_vectors.c		\
+				create_orthonormal_basis.c	\
+				create_light_list.c			\
+				create_cylinder_list.c		\
+				create_plane_list.c			\
+				create_sphere_list.c		\
+				find_nearest_plane.c		\
+				find_nearest_sphere.c		\
+				find_nearest_cylinder.c		\
+				ft_atod.c					\
+				nearest_object.c			\
+				save_scene.c				\
 				draw_pixel_in_image.c
 
 OBJ =			$(CFILE:.c=.o)
