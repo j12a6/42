@@ -6,7 +6,7 @@
 #    By: makoudad <makoudad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/23 11:09:10 by makoudad          #+#    #+#              #
-#    Updated: 2014/03/17 10:40:10 by jaubert          ###   ########.fr        #
+#    Updated: 2014/03/18 21:03:35 by jaubert          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,6 +29,10 @@ SRC =		main.c							\
 			operations_on_vectors.c			\
 			operations_on_vectors_2.c		\
 			operations_on_matrix.c			\
+			intersecting_a_box.c			\
+			intersecting_a_sphere.c			\
+			intersecting_a_plane.c			\
+			intersecting_a_disk.c			\
 			ft_error.c
 
 

@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 16:57:14 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/17 12:24:48 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/18 21:35:54 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ double	**ft_init_matrix(t_v v1, t_v v2, t_v v3, t_v trans)
 	return (mat);
 }
 
-void	ft_multiply_vec_and_matrix(t_v *v, double **mat, t_v v1)
+void	ft_multiply_vect_and_matrix(t_v *v, double **mat, t_v v1)
 {
 	double	homo;
 
