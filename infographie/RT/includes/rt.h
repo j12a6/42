@@ -6,19 +6,21 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/18 21:36:15 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/19 18:37:55 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		RT_H
 # define	RT_H
 
-# define	HEIGHT		(920)
-# define	WIDTH		(1080)
-# define	MIN			(-1000000000)
-# define	MAX			(1000000000)
-# define	E6			(0.000001)
-# define	NB_TYPE		4
+# define	HEIGHT			(920)
+# define	WIDTH			(1080)
+# define	MAX_DEPTH		6
+# define	MIN				(-1000000000)
+# define	MAX				(1000000000)
+# define	E6				(0.000001)
+# define	E4				(0.0001)
+# define	NB_TYPE			4
 
 typedef struct		s_v
 {
@@ -26,6 +28,13 @@ typedef struct		s_v
 	double			y;
 	double			z;
 }					t_v;
+
+typedef struct		s_c
+{
+	int				b;
+	int				g;
+	int				r;
+}					t_c;
 
 typedef struct		s_b
 {
@@ -38,8 +47,11 @@ typedef struct		s_r
 {
 	t_v				o_w;
 	t_v				d_w;
+	t_v				p_hit;
+	t_v				n_hit;
 	double			t0;
 	double			t1;
+	double			t_near;
 }					t_r;
 
 typedef struct		s_box
@@ -56,6 +68,11 @@ typedef struct		s_sph
 {
 	t_v				c;
 	double			r;
+	t_c				sf;
+	t_c				em;
+	double			trsp;
+	double			refl;
+	double			ior;
 }					t_sph;
 
 typedef struct		s_pla
@@ -77,6 +94,13 @@ typedef struct		s_save
 	int				j;
 }					t_save;
 
+typedef struct		s_clr
+{
+	double			fnel;
+	t_c				refl;
+	t_c				refr;
+}					t_clr;
+
 typedef struct		s_cam
 {
 	t_b				b;
@@ -89,20 +113,27 @@ typedef struct		s_obj
 {
 	void			**type[NB_TYPE];
 	int				nb[NB_TYPE];
-	int				(*fct[NB_TYPE])(t_r *, void *);
+	int				(*intersect[NB_TYPE])(t_r *, void *);
+	int				(*treatment[NB_TYPE])(t_r *, void *, t_c *, t_obj);
+	t_v				bg_clr;
 }					t_obj;
 
 /* Vectors */
 void		ft_init_vect(t_v *vect, double x, double y, double z);
+void		ft_vect_opposite(t_v *vect, t_v v1);
+void		ft_vect_sum(t_v *vect, t_v v1, t_v v2);
 void		ft_vect_difference(t_v *vect, t_v vect1, t_v vect2);
 double		ft_dot_product(t_v vect1, t_v vect2);
-void		ft_multiply_vect_by_scalar(t_v *vext, double scalar, t_v v1);
+void		ft_mult_vect_by_scalar(t_v *vext, t_v v1, double scalar);
 void		ft_normalize_vect(t_v *vect);
 double		ft_vect_norm(t_v vect);
 
 /* Matrices */
 double		**ft_init_matrix(t_v v1, t_v v2, t_v v3, t_v trans);
-void		ft_multiply_vect_and_matrix(t_v *v, double **mat, t_v v1);
+void		ft_mult_vect_by_matrix(t_v *v, double **mat, t_v v1);
+
+/* Colors */
+void		ft_mult_color_by_scalar(t_c *color, t_c c1, double scalar)
 
 /* Camera */
 int			ft_find_pixel_pos_on_screen(t_v *rp_c, int i, int j);

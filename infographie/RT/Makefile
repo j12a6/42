@@ -6,7 +6,7 @@
 #    By: makoudad <makoudad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/23 11:09:10 by makoudad          #+#    #+#              #
-#    Updated: 2014/03/18 21:03:35 by jaubert          ###   ########.fr        #
+#    Updated: 2014/03/19 09:55:46 by jaubert          ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -26,6 +26,7 @@ NAME =		raytracer
 
 SRC =		main.c							\
 			camera.c						\
+			operations_on_colors.c			\
 			operations_on_vectors.c			\
 			operations_on_vectors_2.c		\
 			operations_on_matrix.c			\
@@ -42,7 +43,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			$(MAKELIB)
-			$(GCC) -o $(NAME) $(OBJ) $(LIBA) $(HDFLAGS) -ltermcap
+			$(GCC) -o $(NAME) $(OBJ) $(LIBA) $(HDFLAGS)
 
 clean:
 			rm -f $(OBJ)

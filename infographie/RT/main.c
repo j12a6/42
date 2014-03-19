@@ -6,44 +6,57 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 15:02:27 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/18 21:29:55 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/19 19:25:23 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include "libft.h"
 
-void	ft_trace(t_obj obj, t_r r, t_save *save)
+double	ft_mix(double a, double b, double mix)
 {
-	double		t0;
-	double		t1;
-	double		tnear;
+	return (b * mix + a * (1 - mix));
+}
+
+int		ft_init_changer_nom(t_r *r, t_save *save)
+{
+	r->t0 = MAX;
+	r->t1 = MAX;
+	r->tnear = MAX;
+	save->i = -1;
+	save->j = -1;
+	return (0);
+}
+
+t_c		ft_trace(t_obj obj, t_r *r, t_save *save)
+{
 	int			i;
 	int			j;
+	t_c			color;
 
-	t0 = MAX;
-	t1 = MAX;
-	tnear = MAX;
-	save = NULL;
 	i = -1;
 	while (++i < NB_TYPE)
 	{
 		j = -1;
-		while (++j < obj.nb[i])
+		while (++j < obj->nb[i])
 		{
-			if (obj.fct[i](&r, obj.type[i][j]) == 0)
+			if (obj.intersect[i](&r, (obj->type)[i][j]) == 0)
 			{
-				if (r.t0 < 0)
-					r.t0 = r.t1;
-				if (r.t0 > 0 && r.t0 < tnear)
+				if (r->t0 < 0)
+					r->t0 = r->t1;
+				if (r->t0 > 0 && r->t0 < r->tnear)
 				{
-					tnear = r.t0;
+					r->tnear = r->t0;
 					save->i = i;
 					save->j = j;
 				}
 			}
 		}
 	}
+	if (save->i == -1)
+		return (obj->bg_clr);
+	obj->treatment[save->i](r, (obj->type)[save->i][save->j], &color, obj);
+	return (color);
 }
 
 
@@ -54,13 +67,13 @@ int			raytracer(t_obj obj, t_cam cam)
 	t_r			r;
 	t_v			rp_w;
 	double		**c2w;
-	/*t_v			pixel;*/
+	t_v			pixel[HEIGHT * WIDTH];
 	t_save		save;
 
 	ft_init_vect(&cam.ro, 0.0, 0.0, 0.0);
 	if (!(c2w = ft_init_matrix(cam.b.vx, cam.b.vy, cam.b.vz, cam.trans)))
 		return (-1);
-//			ft_multiply_vect_and_matrix(&r.o, c2w, ro_c);
+//			ft_mult_vect_by_matrix(&r.o, c2w, ro_c);
 	r.o_w = cam.ro;//delete ligne au dessus
 	j = -1;
 	while  (++j < HEIGHT)
@@ -68,11 +81,15 @@ int			raytracer(t_obj obj, t_cam cam)
 		i = -1;
 		while (++i < WIDTH)
 		{
+			save.i = -1;
+			save.j = -1;
+			obj.depth = 0;
 			ft_find_pixel_pos_on_screen(&cam.rp, i, j);
-			ft_multiply_vect_and_matrix(&rp_w, c2w, cam.rp);
+			ft_mult_vect_by_matrix(&rp_w, c2w, cam.rp);
 			ft_vect_difference(&r.d_w, rp_w, r.o_w);
 			ft_normalize_vect(&r.d_w);
-			ft_trace(obj, r, &save);
+			pixel = ft_trace(obj, r, &save);
+			++pixel;
 		}
 	}
 	return (0);
