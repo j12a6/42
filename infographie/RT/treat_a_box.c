@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersecting_a_plane.c                             :+:      :+:    :+:   */
+/*   treat_a_box.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/18 14:17:42 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/20 16:05:13 by jaubert          ###   ########.fr       */
+/*   Created: 2014/03/20 17:34:39 by jaubert           #+#    #+#             */
+/*   Updated: 2014/03/20 17:40:22 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string.h>
 #include "rt.h"
 
-int		ft_intersect_a_plane(t_r *r, void *data)
+int		ft_treat_a_box(t_r *r, void *data, t_c *color, t_obj obj)
 {
-	t_v			o_to_c;
-	double		denom;
-	t_pla		*pla;
+	t_box		*box;
+	t_box		*box1;
+	t_r			r1;
+	t_c			color1;
+	t_obj		obj1;
 
-	pla = (t_pla *)data;
-	denom = ft_dot_product(r->d_w, pla->n);
-	if (denom > E6)
-	{
-		ft_vect_difference(&o_to_c, pla->c, r->o_w);
-		r->t0 = ft_dot_product(r->d_w, o_to_c) / denom;
-		r->t1 = -1;
-		if (r->t0 > 0)
-			return (0);
-	}
-	return (-1);
+	box = (t_box *)data;
+	box1 = box;
+	box = box1;
+	r1 = *r;
+	*r = r1;
+	color1 = *color;
+	*color = color1;
+	obj1 = obj;
+	obj = obj1;
+	return (0);
 }

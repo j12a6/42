@@ -1,70 +1,80 @@
-#******************************************************************************#
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: makoudad <makoudad@student.42.fr>          +#+  +:+       +#+         #
+#    By: jaubert <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2013/12/23 11:09:10 by makoudad          #+#    #+#              #
-#    Updated: 2014/03/19 09:55:46 by jaubert          ###   ########.fr        #
+#    Created: 2014/03/20 15:44:10 by jaubert           #+#    #+#              #
+#    Updated: 2014/03/20 17:43:18 by jaubert          ###   ########.fr        #
 #                                                                              #
-#******************************************************************************#
+# **************************************************************************** #
 
-GCC =		gcc -Wall -Werror -Wextra -g
+NAME =			RT
 
-LIBH =		./libft/includes/
+CC =			gcc
 
-LIBA =		./libft/libft.a
+CFLAGS =		-Wall -Wextra -Werror -g
 
-LIBLS =		./includes/
+MINIFLAGS =		-L/usr/X11/lib -lmlx -lXext -lX11
 
-HDFLAGS =	-I$(LIBH) -I$(LIBLS)
+HDFLAGS =		-I$(HDDIR) -I./includes/
 
-MAKELIB =	make -C libft/
+HDDIR =			./libft/includes/
 
-NAME =		raytracer
+CFILE =			main.c							\
+				camera.c						\
+				operations_on_colors.c			\
+				operations_on_vectors.c			\
+				operations_on_vectors_2.c		\
+				operations_on_matrix.c			\
+				intersecting_a_box.c			\
+				intersecting_a_sphere.c			\
+				intersecting_a_plane.c			\
+				intersecting_a_disk.c			\
+				draw.c							\
+				init_array_of_fct_pointer.c		\
+				treat_a_sphere.c				\
+				treat_a_box.c					\
+				treat_a_disk.c					\
+				treat_a_plane.c					\
+				ft_diffuse_object.c				\
+				ft_error.c
 
-SRC =		main.c							\
-			camera.c						\
-			operations_on_colors.c			\
-			operations_on_vectors.c			\
-			operations_on_vectors_2.c		\
-			operations_on_matrix.c			\
-			intersecting_a_box.c			\
-			intersecting_a_sphere.c			\
-			intersecting_a_plane.c			\
-			intersecting_a_disk.c			\
-			ft_error.c
+OBJ =			$(CFILE:.c=.o)
 
+AFILE =			./libft/libft.a
 
-OBJ =		$(SRC:.c=.o)
+LIBMAKE =		make -C libft/
 
-all:		$(NAME)
+all:			$(NAME)
 
-$(NAME):	$(OBJ)
-			$(MAKELIB)
-			$(GCC) -o $(NAME) $(OBJ) $(LIBA) $(HDFLAGS)
+$(NAME):		$(OBJ)
+				$(LIBMAKE)
+				$(CC) $(MINIFLAGS) $(CFLAGS) $(HDFLAGS) -o $(NAME) $(OBJ) $(AFILE)
 
 clean:
-			rm -f $(OBJ)
+				rm -f $(OBJ)
 
-fclean:		clean
-			rm -f $(NAME)
+fclean:			clean
+				rm -f $(NAME)
+				$(LIBMAKE) fclean
 
-re:			fclean all
+re:				fclean all
 
-lall:
-			$(MAKELIB)
+lib_all:
+				$(LIBMAKE)
 
-lclean:
-			$(MAKELIB) clean
+lib_clean:
+				$(LIBMAKE) clean
 
-lfclean:
-			$(MAKELIB) fclean
+lib_fclean:
+				$(LIBMAKE) fclean
 
-lre:		lfclean lall
+lib_re:
+				$(LIBMAKE) re
 
-.PHONY:		clean fclean re all lall lclean lfclean lre
+.PHONY:			all clean fclean re lib_all lib_clean lib_fclean lib_re
 
-%.o:		%.c
-			$(GCC) $(HDFLAGS) -c $< -o $@
+%.o:			%.c
+				$(CC) $(CFLAGS) $(HDFLAGS) -c $< -o $@

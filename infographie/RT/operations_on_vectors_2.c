@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/17 10:24:09 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/19 11:13:51 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/20 16:09:24 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_vect_sum(t_v *vect, t_v v1, t_v v2)
 	vect->z = v1.z + v2.z;
 }
 
-void	ft_mult_vect_by_scalar(t_v *vect, t_v v1, double scalar)
+void	ft_mult_vect_by_nb(t_v *vect, t_v v1, double scalar)
 {
 	vect->x = v1.x * scalar;
 	vect->y = v1.y * scalar;

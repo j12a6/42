@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/18 14:47:21 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/18 21:35:02 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/20 16:09:06 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		ft_intersect_a_disk(t_r *r, void *data)
 		r->t1 = -1;
 		if (r->t0 > 0)
 		{
-			ft_multiply_vect_by_scalar(&o_to_p, r->t0, r->d_w);
+			ft_mult_vect_by_nb(&o_to_p, r->d_w, r->t0);
 			if (ft_dot_product(c_to_p, c_to_p) <= pow(dis->r, 2))
 				return (0);
 		}

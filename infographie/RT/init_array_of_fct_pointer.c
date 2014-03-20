@@ -1,32 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersecting_a_plane.c                             :+:      :+:    :+:   */
+/*   init_array_of_fct_pointer.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/18 14:17:42 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/20 16:05:13 by jaubert          ###   ########.fr       */
+/*   Created: 2014/03/20 16:26:25 by jaubert           #+#    #+#             */
+/*   Updated: 2014/03/20 16:36:29 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		ft_intersect_a_plane(t_r *r, void *data)
+int		ft_init_array_of_fct_pointer(t_obj *obj)
 {
-	t_v			o_to_c;
-	double		denom;
-	t_pla		*pla;
-
-	pla = (t_pla *)data;
-	denom = ft_dot_product(r->d_w, pla->n);
-	if (denom > E6)
-	{
-		ft_vect_difference(&o_to_c, pla->c, r->o_w);
-		r->t0 = ft_dot_product(r->d_w, o_to_c) / denom;
-		r->t1 = -1;
-		if (r->t0 > 0)
-			return (0);
-	}
-	return (-1);
+	obj->intersect[0] = ft_intersect_a_box;
+	obj->intersect[1] = ft_intersect_a_sphere;
+	obj->intersect[2] = ft_intersect_a_disk;
+	obj->intersect[3] = ft_intersect_a_plane;
+	obj->treatment[0] = ft_treat_a_box;
+	obj->treatment[1] = ft_treat_a_sphere;
+	obj->treatment[2] = ft_treat_a_disk;
+	obj->treatment[3] = ft_treat_a_plane;
+	return (0);
 }

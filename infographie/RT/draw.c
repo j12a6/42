@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersecting_a_plane.c                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/18 14:17:42 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/20 16:05:13 by jaubert          ###   ########.fr       */
+/*   Created: 2014/03/20 15:12:32 by jaubert           #+#    #+#             */
+/*   Updated: 2014/03/20 15:47:14 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
 #include "rt.h"
 
-int		ft_intersect_a_plane(t_r *r, void *data)
+int		ft_draw(t_mlx *mlx)
 {
-	t_v			o_to_c;
-	double		denom;
-	t_pla		*pla;
+	int		i;
+	int		j;
 
-	pla = (t_pla *)data;
-	denom = ft_dot_product(r->d_w, pla->n);
-	if (denom > E6)
+	j = 0;
+	while (j < HEIGHT)
 	{
-		ft_vect_difference(&o_to_c, pla->c, r->o_w);
-		r->t0 = ft_dot_product(r->d_w, o_to_c) / denom;
-		r->t1 = -1;
-		if (r->t0 > 0)
-			return (0);
+		i = 0;
+		while (i < WIDTH)
+		{
+			mlx->i.data[0 + i * 4 + j * mlx->i.sl] = (mlx->obj.pixel[j][i]).b;
+			mlx->i.data[1 + i * 4 + j * mlx->i.sl] = (mlx->obj.pixel[j][i]).g;
+			mlx->i.data[2 + i * 4 + j * mlx->i.sl] = (mlx->obj.pixel[j][i]).r;
+			++i;
+		}
+		++j;
 	}
-	return (-1);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+	return (0);
 }
