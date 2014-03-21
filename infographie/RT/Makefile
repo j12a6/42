@@ -6,7 +6,7 @@
 #    By: jaubert <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/20 15:44:10 by jaubert           #+#    #+#              #
-#    Updated: 2014/03/20 17:43:18 by jaubert          ###   ########.fr        #
+#    Updated: 2014/03/21 10:35:23 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CFILE =			main.c							\
 				intersecting_a_plane.c			\
 				intersecting_a_disk.c			\
 				draw.c							\
-				init_array_of_fct_pointer.c		\
+				init_object_structure.c			\
 				treat_a_sphere.c				\
 				treat_a_box.c					\
 				treat_a_disk.c					\

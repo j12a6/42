@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/20 17:36:50 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/21 15:20:03 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 
 # define	HEIGHT			(920)
 # define	WIDTH			(1080)
-# define	MAX_DEPTH		6
+# define	MAX_DEPTH		2
 # define	MIN				(-1000000000)
 # define	MAX				(1000000000)
 # define	E6				(0.000001)
 # define	E4				(0.0001)
 # define	NB_TYPE			4
+# define	BOX				0
+# define	SPH				1
+# define	PLA				2
+# define	DIS				3
+# define	CYL				4
+# define	CON				5
 
 typedef struct		s_v
 {
@@ -69,7 +75,7 @@ typedef struct		s_sph
 	t_v				c;
 	double			r;
 	t_c				sf;
-	t_c				em; 
+	t_c				em;
 	double			trsp;
 	double			refl;
 	double			ior;
@@ -112,9 +118,9 @@ typedef struct		s_cam
 typedef struct		s_obj
 {
 	int				depth;
-	t_c				pixel[HEIGHT][WIDTH];
-	void			**type[NB_TYPE];
-	int				nb[NB_TYPE];
+	t_c				**pixel;
+	void			***type;
+	int				*nb;
 	int				(*intersect[NB_TYPE])(t_r *, void *);
 	int				(*treatment[NB_TYPE])(t_r *, void *, t_c *, struct s_obj);
 	t_c				bg_clr;
@@ -175,9 +181,10 @@ int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj);
 int			ft_treat_a_disk(t_r *r, void *data, t_c *color, t_obj obj);
 int			ft_treat_a_plane(t_r *r, void *data, t_c *color, t_obj obj);
 double		ft_mix(double a, double b, double mix);
-int			ft_init_array_of_fct_pointer(t_obj *obj);
+int			ft_init_object_structure(t_obj *obj);
 
 int			ft_diffuse_object(t_obj obj, t_r *r, t_c *color, t_c sf);
 t_c			ft_trace(t_obj obj, t_r *r, t_save *save);
+int			ft_do_scene(t_obj *obj);
 
 #endif	/* !RT_H */

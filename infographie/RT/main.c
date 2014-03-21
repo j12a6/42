@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 15:02:27 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/20 17:48:44 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/21 16:51:40 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <mlx.h>
 #include "rt.h"
 #include "libft.h"
-
+#include <stdio.h>
 double	ft_mix(double a, double b, double mix)
 {
 	return (b * mix + a * (1 - mix));
@@ -36,13 +36,15 @@ t_c		ft_trace(t_obj obj, t_r *r, t_save *save)
 	int			j;
 	t_c			color;
 
+	ft_init_changer_nom(r, save);
 	i = -1;
 	while (++i < NB_TYPE)
 	{
 		j = -1;
 		while (++j < obj.nb[i])
 		{
-			if (obj.intersect[i](r, (obj.type)[i][j]) == 0)
+/*	printf("%f, %f, %f\n", ((t_sph **)obj.type)[i][j].c.x, ((t_sph **)obj.type)[i][j].c.y, ((t_sph **)obj.type)[i][j].c.z);
+ */			if (obj.intersect[i](r, (obj.type)[i][j]) == 0)
 			{
 				if (r->t0 < 0)
 					r->t0 = r->t1;
@@ -57,10 +59,10 @@ t_c		ft_trace(t_obj obj, t_r *r, t_save *save)
 	}
 	if (save->i == -1)
 		return (obj.bg_clr);
+/*	printf("%f, %f\n", r->t0, r->t1);*/
 	obj.treatment[save->i](r, (obj.type)[save->i][save->j], &color, obj);
 	return (color);
 }
-
 
 int			raytracer(t_obj *obj, t_cam cam)
 {
@@ -84,14 +86,15 @@ int			raytracer(t_obj *obj, t_cam cam)
 		i = -1;
 		while (++i < WIDTH)
 		{
-			save.i = -1;
-			save.j = -1;
 			new_obj.depth = 0;
 			ft_find_pixel_pos_on_screen(&cam.rp, i, j);
 			ft_mult_vect_by_matrix(&rp_w, c2w, cam.rp);
 			ft_vect_difference(&r.d_w, rp_w, r.o_w);
 			ft_normalize_vect(&r.d_w);
 			obj->pixel[j][i] = ft_trace(new_obj, &r, &save);
+/*			printf("b = %d && g = %d && r = %d\n", (obj->pixel[j][i]).b
+			, (obj->pixel[j][i]).g, (obj->pixel[j][i]).r);*/
+
 			// attention fonction au dessus, pas sur de & de 'r'
 		}
 	}
@@ -115,6 +118,8 @@ int		key_hook(int key, t_mlx *mlx)
 int		expose_hook(t_mlx *mlx)
 {
 	ft_draw(mlx);
+
+	ft_putendl_fd("FINI", 2);
 	return (0);
 }
 
@@ -125,7 +130,8 @@ int		main(int ac, char **av)
 
 	if (ac != 2 || !av[1])
 		return (ft_error("Please choose one scene", "", -1));
-	ft_init_array_of_fct_pointer(&mlx.obj);
+	ft_init_object_structure(&mlx.obj);
+	ft_do_scene(&mlx.obj);
 	/*	if (ft_parser(av[1], &mlx.obj) == -1)
 		return (-1);*/
 	ft_init_vect(&(cam.b.vx), 1.0, 0.0, 0.0);

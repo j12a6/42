@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/19 15:12:05 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/20 17:14:09 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/21 17:13:25 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	ft_find_sph_refr_clr(t_r *r, t_c *refr_clr, t_obj obj, double eta)
 	*refr_clr = ft_trace(obj, &new_r, &save);
 	return (0);
 }
-
+#include <stdio.h>
 int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj)
 {
 	t_sph		*sph;
@@ -77,6 +77,7 @@ int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj)
 	double		eta;
 	t_clr		clr;
 
+/*	printf("AAAAA\n");*/
 	sph = (t_sph *)data;
 	inside = 0;
 	ft_find_sph_normal(r, sph->c, &inside);
@@ -96,5 +97,8 @@ int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj)
 	else
 		ft_diffuse_object(obj, r, color, sph->sf);
 	ft_color_sum(color, *color, sph->em);
+	/**/printf("refl = %d, %d, %d\n", clr.refl.b, clr.refl.g, clr.refl.r);
+	/**/printf("refr = %d, %d, %d\n", clr.refr.b, clr.refr.g, clr.refr.r);
+	/**/printf("%d, %d, %d\n", color->b, color->g, color->r);
 	return (0);
 }
