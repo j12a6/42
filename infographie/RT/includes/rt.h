@@ -6,15 +6,15 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/22 12:25:04 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/22 19:08:11 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		RT_H
 # define	RT_H
 
-# define	HEIGHT			(920.0)
-# define	WIDTH			(1280.0)
+# define	HEIGHT			(900.0)
+# define	WIDTH			(1200.0)
 # define	MAX_DEPTH		0
 # define	MIN				(-1000000000.0)
 # define	MAX				(1000000000.0)
