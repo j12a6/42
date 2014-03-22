@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/20 16:26:25 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/21 15:55:06 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/22 12:25:01 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ int		ft_do_scene(t_obj *obj)
 			return (-1);
 	}
 	lsph[++i] = NULL;
-	ft_init_vect(&lsph[0]->c, 0, 0, -10);
-	lsph[0]->r = 1;
+	ft_init_vect(&lsph[0]->c, 1, 3, -9.5);
+	lsph[0]->r = 5;
 	ft_init_color(&lsph[0]->sf, 0, 0, 80);
 	ft_init_color(&lsph[0]->em, 0, 0, 0);
 	lsph[0]->trsp = 0;
 	lsph[0]->refl = 1;
 	lsph[0]->ior = 1.2;
-	ft_init_vect(&lsph[1]->c, 4, 4, 2);
-	lsph[1]->r = 1;
+	ft_init_vect(&lsph[1]->c, -2, 3, -10);
+	lsph[1]->r = 5;
 	ft_init_color(&lsph[1]->sf, 100, 0, 0);
-	ft_init_color(&lsph[1]->em, 100, 0, 0);
+	ft_init_color(&lsph[1]->em, 100, 100, 100);
 	lsph[1]->trsp = 0;
 	lsph[1]->refl = 1;
 	lsph[1]->ior = 1.2;

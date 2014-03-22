@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/04 16:38:28 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/19 11:08:08 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/22 09:36:48 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 double	ft_vect_norm(t_v vect)
 {
-	return (pow(vect.x, 2) + pow(vect.y, 2) + pow(vect.z, 2));
+	return (vect.x * vect.x + vect.y * vect.y + vect.z * vect.z);
 }
 
 void	ft_normalize_vect(t_v *vect)

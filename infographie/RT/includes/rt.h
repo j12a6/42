@@ -6,18 +6,18 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/21 15:20:03 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/22 12:25:04 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		RT_H
 # define	RT_H
 
-# define	HEIGHT			(920)
-# define	WIDTH			(1080)
-# define	MAX_DEPTH		2
-# define	MIN				(-1000000000)
-# define	MAX				(1000000000)
+# define	HEIGHT			(920.0)
+# define	WIDTH			(1280.0)
+# define	MAX_DEPTH		0
+# define	MIN				(-1000000000.0)
+# define	MAX				(1000000000.0)
 # define	E6				(0.000001)
 # define	E4				(0.0001)
 # define	NB_TYPE			4
@@ -154,7 +154,7 @@ void		ft_normalize_vect(t_v *vect);
 double		ft_vect_norm(t_v vect);
 
 /* Matrices */
-double		**ft_init_matrix(t_v v1, t_v v2, t_v v3, t_v trans);
+double		**ft_init_matrix(t_v *v1, t_v *v2, t_v *v3, t_v *trans);
 void		ft_mult_vect_by_matrix(t_v *v, double **mat, t_v v1);
 
 /* Colors */
@@ -166,6 +166,7 @@ void		ft_mult_color_by_color(t_c *color, t_c color1, t_c color2);
 
 /* Camera */
 int			ft_find_pixel_pos_on_screen(t_v *rp_c, int i, int j);
+void		ft_init_camera(t_cam *cam);
 
 /* Others */
 int			ft_error(char *s1, char *s2, int val);

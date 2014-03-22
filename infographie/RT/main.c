@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 15:02:27 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/21 16:51:40 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/22 12:23:53 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 #include <mlx.h>
 #include "rt.h"
 #include "libft.h"
+
+
+
+
 #include <stdio.h>
+
 double	ft_mix(double a, double b, double mix)
 {
 	return (b * mix + a * (1 - mix));
@@ -44,8 +49,10 @@ t_c		ft_trace(t_obj obj, t_r *r, t_save *save)
 		while (++j < obj.nb[i])
 		{
 /*	printf("%f, %f, %f\n", ((t_sph **)obj.type)[i][j].c.x, ((t_sph **)obj.type)[i][j].c.y, ((t_sph **)obj.type)[i][j].c.z);
- */			if (obj.intersect[i](r, (obj.type)[i][j]) == 0)
+*/
+			if (obj.intersect[i](r, (obj.type)[i][j]) == 0)
 			{
+///**/printf("r = %f, %f, %f && j = %d\n", r->d_w.x, r->d_w.y, r->d_w.z, j);
 				if (r->t0 < 0)
 					r->t0 = r->t1;
 				if (r->t0 > 0 && r->t0 < r->tnear)
@@ -69,17 +76,15 @@ int			raytracer(t_obj *obj, t_cam cam)
 	int			i;
 	int			j;
 	t_r			r;
-	t_v			rp_w;
 	double		**c2w;
 	t_save		save;
 	t_obj		new_obj;
 
 	new_obj = *obj;
-	ft_init_vect(&cam.ro, 0.0, 0.0, 0.0);
-	if (!(c2w = ft_init_matrix(cam.b.vx, cam.b.vy, cam.b.vz, cam.trans)))
+	if (!(c2w = ft_init_matrix(&cam.b.vx, &cam.b.vy, &cam.b.vz, &cam.trans)))
 		return (-1);
 	//ft_mult_vect_by_matrix(&r.o, c2w, ro_c);
-	r.o_w = cam.ro;//delete ligne au dessus
+	r.o_w = cam.ro;//equivalent a ligne au dessus mais sans bouger la cam
 	j = -1;
 	while  (++j < HEIGHT)
 	{
@@ -88,14 +93,13 @@ int			raytracer(t_obj *obj, t_cam cam)
 		{
 			new_obj.depth = 0;
 			ft_find_pixel_pos_on_screen(&cam.rp, i, j);
-			ft_mult_vect_by_matrix(&rp_w, c2w, cam.rp);
-			ft_vect_difference(&r.d_w, rp_w, r.o_w);
+			ft_mult_vect_by_matrix(&r.d_w, c2w, cam.rp);
+			ft_vect_difference(&r.d_w, r.d_w, r.o_w);
 			ft_normalize_vect(&r.d_w);
+/**/printf("%f, %f, %f\n", r.d_w.x, r.d_w.y, r.d_w.z);
 			obj->pixel[j][i] = ft_trace(new_obj, &r, &save);
-/*			printf("b = %d && g = %d && r = %d\n", (obj->pixel[j][i]).b
-			, (obj->pixel[j][i]).g, (obj->pixel[j][i]).r);*/
-
 			// attention fonction au dessus, pas sur de & de 'r'
+///**/			printf("b = %d && g = %d && r = %d\n", (obj->pixel[j][i]).b, (obj->pixel[j][i]).g, (obj->pixel[j][i]).r);
 		}
 	}
 	return (0);
@@ -130,19 +134,16 @@ int		main(int ac, char **av)
 
 	if (ac != 2 || !av[1])
 		return (ft_error("Please choose one scene", "", -1));
+	ft_init_camera(&cam);
 	ft_init_object_structure(&mlx.obj);
-	ft_do_scene(&mlx.obj);
 	/*	if (ft_parser(av[1], &mlx.obj) == -1)
 		return (-1);*/
-	ft_init_vect(&(cam.b.vx), 1.0, 0.0, 0.0);
-	ft_init_vect(&(cam.b.vy), 0.0, 1.0, 0.0);
-	ft_init_vect(&(cam.b.vz), 0.0, 0.0, 1.0);
-	ft_init_vect(&cam.trans, 0.0, 0.0, 0.0);
+	ft_do_scene(&mlx.obj);//correspond a ft_parser
 	mlx.mlx = mlx_init();
 	mlx.win = mlx_new_window(mlx.mlx, WIDTH, HEIGHT, "RT");
 	mlx.img = mlx_new_image(mlx.mlx, WIDTH, HEIGHT);
 	mlx.i.data = mlx_get_data_addr(mlx.img, &(mlx.i.bpp), &(mlx.i.sl),
-			&(mlx.i.endian));
+									&(mlx.i.endian));
 	mlx_key_hook(mlx.win, key_hook, &mlx);
 	raytracer(&mlx.obj, cam);
 	mlx_expose_hook(mlx.win, expose_hook, &mlx);

@@ -6,13 +6,13 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/18 13:38:26 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/21 16:22:22 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/22 10:12:58 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rt.h"
-
+//ATTENTION !!!!!!!!!!!!!!!! Dans le cas ou on est dans la sphere -> jeff me faire chier le monde
 
 #include <stdio.h>
 #include "libft.h"
