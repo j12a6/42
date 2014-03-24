@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/19 17:57:37 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/22 18:16:11 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/24 19:41:17 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ int		ft_diffuse_object(t_obj obj, t_r *r, t_c *color, t_c sf)
 		{
 			if (obj.intersect[i](&new_r, (obj.type)[i][j]) == 0)
 			{
-				if (new_r.t0 < 0)
-					new_r.t0 = new_r.t1;
-				if (new_r.t0 > 0 && new_r.t0 < new_r.tnear)
+				if (new_r.t0 < new_r.tnear)
 				{
 					new_r.tnear = new_r.t0;
 					save.i = i;

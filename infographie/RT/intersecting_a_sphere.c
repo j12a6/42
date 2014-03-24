@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/18 13:38:26 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/22 17:06:02 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/24 19:23:34 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,20 @@
 static int	ft_find_sphere_inter(t_r *r, t_sph *sph)
 {
 	t_v			o_to_c;
-	double		t_oc;
-	double		t_pc;
-	double		d2;
-	double		r2;
+	double		a;
+	double		b;
+	double		c;
 
-	ft_vect_difference(&o_to_c, sph->c, r->o_w);
-/*	printf("%f, %f, %f\n", o_to_c.x, o_to_c.y, o_to_c.z);*/
-	t_oc = ft_dot_product(r->d_w, o_to_c);
-/*	printf("%f\n", t_oc);*/
-/*	if (t_oc < 0)
-	return (-1);*/
-	d2 = ft_dot_product(o_to_c, o_to_c) - t_oc * t_oc;
-	r2 = sph->r * sph->r;
-	if (d2 > r2)
+	ft_vect_difference(&o_to_c, r->o_w, sph->c);
+	a = ft_dot_product(r->d_w, r->d_w);
+	b = 2 * ft_dot_product(r->d_w, o_to_c);
+	c = ft_dot_product(o_to_c, o_to_c) - sph->r * sph->r;
+	if (ft_nearest_solution(a, b, c, r) == -1)
 		return (-1);
-	t_pc = sqrt(r2 - d2);
-	r->t0 = t_oc - t_pc;
-	r->t1 = t_oc + t_pc;
+	if (r->t0 < 0 && r->t1 < 0)
+		return (-1);
+	if (r->t0 < 0)
+		r->t0 = r->t1;
 	return (0);
 }
 

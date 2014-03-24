@@ -6,16 +6,16 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/22 19:08:11 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/24 19:47:38 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		RT_H
 # define	RT_H
 
-# define	HEIGHT			(900.0)
-# define	WIDTH			(1200.0)
-# define	MAX_DEPTH		0
+# define	HEIGHT			(1300.0)
+# define	WIDTH			(2400.0)
+# define	MAX_DEPTH		2
 # define	MIN				(-1000000000.0)
 # define	MAX				(1000000000.0)
 # define	E6				(0.000001)
@@ -58,6 +58,7 @@ typedef struct		s_r
 	double			t0;
 	double			t1;
 	double			tnear;
+	t_c				color;
 }					t_r;
 
 typedef struct		s_box
@@ -143,15 +144,18 @@ typedef struct		s_mlx
 	t_obj			obj;
 }					t_mlx;
 
+int			ft_nearest_solution(double, double, double, t_r *);
+
 /* Vectors */
 void		ft_init_vect(t_v *vect, double x, double y, double z);
 void		ft_vect_opposite(t_v *vect, t_v v1);
 void		ft_vect_sum(t_v *vect, t_v v1, t_v v2);
 void		ft_vect_difference(t_v *vect, t_v vect1, t_v vect2);
 double		ft_dot_product(t_v vect1, t_v vect2);
+void		ft_cross_product(t_v *vect, t_v *vect1, t_v *vect2);
 void		ft_mult_vect_by_nb(t_v *vext, t_v v1, double scalar);
 void		ft_normalize_vect(t_v *vect);
-double		ft_vect_norm(t_v vect);
+double		ft_vect_norm(t_v *vect);
 
 /* Matrices */
 double		**ft_init_matrix(t_v *v1, t_v *v2, t_v *v3, t_v *trans);
@@ -187,5 +191,7 @@ int			ft_init_object_structure(t_obj *obj);
 int			ft_diffuse_object(t_obj obj, t_r *r, t_c *color, t_c sf);
 t_c			ft_trace(t_obj obj, t_r *r, t_save *save);
 int			ft_do_scene(t_obj *obj);
+
+void		ft_swap(double *tmin, double *tmax);
 
 #endif	/* !RT_H */

@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/19 15:12:05 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/22 18:21:14 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/24 19:43:37 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj)
 	ft_find_sph_normal(r, sph->c, &inside);
 	if ((sph->refl > 0 || sph->trsp > 0) && obj.depth < MAX_DEPTH)
 	{
+		printf("CCCCCCCC\n");
 		eta = (inside == 1) ? sph->ior : 1 / sph->ior;
 		ft_find_sph_refl_clr(r, &clr.refl, obj, &clr.fnel);
 		ft_init_color(&clr.refr, 0, 0, 0);
@@ -111,16 +112,16 @@ int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj)
 	}
 	else
 	{
-	ft_mult_vect_by_nb(&tmp, r->n_hit, 2 * ft_dot_product(r->d_w, r->n_hit));
-	ft_vect_difference(&new_r.d_w, r->d_w, tmp);
-	ft_normalize_vect(&new_r.d_w);
-	ft_mult_vect_by_nb(&tmp, r->n_hit, E4);
-	ft_vect_sum(&new_r.o_w, r->p_hit, tmp);
-	/**/printf("r.o_w = %f, %f, %f\n", r->o_w.x, r->o_w.y, r->o_w.z);
-	/**/printf("r.d_w = %f, %f, %f\n", r->d_w.x, r->d_w.y, r->d_w.z);
-	/**/printf("new_r.o_w = %f, %f, %f\n", new_r.o_w.x, new_r.o_w.y, new_r.o_w.z);
-	/**/printf("new_r.d_w = %f, %f, %f\n", new_r.d_w.x, new_r.d_w.y, new_r.d_w.z);
-	ft_diffuse_object(obj, &new_r, color, sph->sf);
+		ft_mult_vect_by_nb(&tmp, r->n_hit, 2 * ft_dot_product(r->d_w, r->n_hit));
+		ft_vect_difference(&new_r.d_w, r->d_w, tmp);
+		ft_normalize_vect(&new_r.d_w);
+		ft_mult_vect_by_nb(&tmp, r->n_hit, E4);
+		ft_vect_sum(&new_r.o_w, r->p_hit, tmp);
+//	/**/printf("r.o_w = %f, %f, %f\n", r->o_w.x, r->o_w.y, r->o_w.z);
+//	/**/printf("r.d_w = %f, %f, %f\n", r->d_w.x, r->d_w.y, r->d_w.z);
+//	/**/printf("new_r.o_w = %f, %f, %f\n", new_r.o_w.x, new_r.o_w.y, new_r.o_w.z);
+//	/**/printf("new_r.d_w = %f, %f, %f\n", new_r.d_w.x, new_r.d_w.y, new_r.d_w.z);
+		ft_diffuse_object(obj, &new_r, color, sph->sf);
 	}
 	ft_color_sum(color, *color, sph->em);
 //	/**/printf("%d, %d, %d\n", color->b, color->g, color->r);

@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/20 16:26:25 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/22 18:19:00 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/24 19:46:44 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,17 @@ int		ft_do_scene(t_obj *obj)
 		if (!(lsph[i] = (t_sph *)gmalloc(sizeof(t_sph))))
 			return (-1);
 	}
-	lsph[++i] = NULL;
-	ft_init_vect(&lsph[0]->c, 0, 0, -10);
-	lsph[0]->r = 5;
+	ft_init_vect(&lsph[0]->c, 0, 2, -30);
+	lsph[0]->r = 2;
 	ft_init_color(&lsph[0]->sf, 50, 0, 0);
-	ft_init_color(&lsph[0]->em, 0, 0, 0);
-	lsph[0]->trsp = 0;
+	ft_init_color(&lsph[0]->em, 50, 0, 0);
+	lsph[0]->trsp = 5;
 	lsph[0]->refl = 100;
 	lsph[0]->ior = 1.2;
-	ft_init_vect(&lsph[1]->c, 0, 5, 2);
-	lsph[1]->r = 1.5;
-	ft_init_color(&lsph[1]->sf, 0, 100, 0);
-	ft_init_color(&lsph[1]->em, 0, 100, 0);
+	ft_init_vect(&lsph[1]->c, 5, 5, -30);
+	lsph[1]->r = 2;
+	ft_init_color(&lsph[1]->sf, 127, 127, 127);
+	ft_init_color(&lsph[1]->em, 255, 255, 255);
 	lsph[1]->trsp = 0;
 	lsph[1]->refl = 100;
 	lsph[1]->ior = 1.2;

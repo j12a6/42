@@ -6,7 +6,7 @@
 #    By: jaubert <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/20 15:44:10 by jaubert           #+#    #+#              #
-#    Updated: 2014/03/21 10:35:23 by jaubert          ###   ########.fr        #
+#    Updated: 2014/03/24 15:23:59 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ HDFLAGS =		-I$(HDDIR) -I./includes/
 HDDIR =			./libft/includes/
 
 CFILE =			main.c							\
+				sol_equ_quadratic.c				\
 				camera.c						\
 				operations_on_colors.c			\
 				operations_on_vectors.c			\
