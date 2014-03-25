@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/18 13:38:26 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 19:23:34 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/25 10:26:29 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_find_sphere_inter(t_r *r, t_sph *sph)
 	c = ft_dot_product(o_to_c, o_to_c) - sph->r * sph->r;
 	if (ft_nearest_solution(a, b, c, r) == -1)
 		return (-1);
-	if (r->t0 < 0 && r->t1 < 0)
+	if (r->t1 < 0)
 		return (-1);
 	if (r->t0 < 0)
 		r->t0 = r->t1;

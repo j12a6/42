@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/20 16:26:25 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 19:46:44 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/25 15:19:24 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ft_init_object_structure(t_obj *obj)
 	obj->treatment[1] = ft_treat_a_sphere;
 	obj->treatment[2] = ft_treat_a_disk;
 	obj->treatment[3] = ft_treat_a_plane;
-	ft_init_color(&(obj->bg_clr), 100, 100, 100);
+	ft_init_color(&(obj->bg_clr), 10, 10, 60);
 	return (0);
 }
 
@@ -52,7 +52,7 @@ int		ft_do_scene(t_obj *obj)
 	t_sph	**lsph;
 	int		i;
 
-	obj->nb[SPH] = 2;
+	obj->nb[SPH] = 3;
 	if (!(((t_sph ***)obj->type)[SPH]
 		  = (t_sph **)gmalloc(sizeof(t_sph *) * obj->nb[SPH])))
 		return (-1);
@@ -63,19 +63,26 @@ int		ft_do_scene(t_obj *obj)
 		if (!(lsph[i] = (t_sph *)gmalloc(sizeof(t_sph))))
 			return (-1);
 	}
-	ft_init_vect(&lsph[0]->c, 0, 2, -30);
-	lsph[0]->r = 2;
-	ft_init_color(&lsph[0]->sf, 50, 0, 0);
-	ft_init_color(&lsph[0]->em, 50, 0, 0);
-	lsph[0]->trsp = 5;
-	lsph[0]->refl = 100;
-	lsph[0]->ior = 1.2;
-	ft_init_vect(&lsph[1]->c, 5, 5, -30);
-	lsph[1]->r = 2;
-	ft_init_color(&lsph[1]->sf, 127, 127, 127);
+	ft_init_vect(&lsph[0]->c, 0, 0, -30);
+	lsph[0]->r = 1;
+	ft_init_color(&lsph[0]->sf, 255, 0, 0);
+	ft_init_color(&lsph[0]->em, 0, 0, 0);
+	lsph[0]->trsp = 0;
+	lsph[0]->refl = 0;
+	lsph[0]->ior = 0;
+	ft_init_vect(&lsph[1]->c, -5, -5, -25);
+	lsph[1]->r = 3;
+	ft_init_color(&lsph[1]->sf, 0, 0, 0);
 	ft_init_color(&lsph[1]->em, 255, 255, 255);
 	lsph[1]->trsp = 0;
-	lsph[1]->refl = 100;
-	lsph[1]->ior = 1.2;
+	lsph[1]->refl = 0;
+	lsph[1]->ior = 0;
+	ft_init_vect(&lsph[2]->c, -2, -2, -27.5);
+	lsph[2]->r = 0.3;
+	ft_init_color(&lsph[2]->sf, 0, 0, 250);
+	ft_init_color(&lsph[2]->em, 0, 0, 0);
+	lsph[2]->trsp = 0;
+	lsph[2]->refl = 0;
+	lsph[2]->ior = 0;
 	return (0);
 }

@@ -6,19 +6,13 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/19 17:57:37 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 19:41:17 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/25 18:14:36 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 #include <stdio.h>
-static double	ft_max(double a, double b)
-{
-	if (b > a)
-		return (b);
-	return (a);
-}
-
+#include "libft.h"
 static t_c		ft_hit_a_sphere_light(t_obj obj, t_r *r, t_save *save, t_c *sf)
 {
 	double	facing;
@@ -27,17 +21,10 @@ static t_c		ft_hit_a_sphere_light(t_obj obj, t_r *r, t_save *save, t_c *sf)
 	t_c		tmp2;
 
 	ft_init_color(&tmp2, 0, 0, 0);
-	if (save->i == 1 && ((((t_sph ***)obj.type)[save->i][save->j])->em.r > 0
-						 || (((t_sph ***)obj.type)[save->i][save->j])->em.g > 0
-						 || (((t_sph ***)obj.type)[save->i][save->j])->em.b > 0))
-	{
-		ft_vect_difference(&light_d, (((t_sph ***)obj.type)[save->i][save->j])->c, r->p_hit);
-		ft_normalize_vect(&light_d);
-		facing = ft_dot_product(r->n_hit, light_d);
-		facing = ft_max(0, facing);
-		ft_mult_color_by_nb(&tmp1, *sf, facing);
-		ft_mult_color_by_color(&tmp2, tmp1, (((t_sph ***)obj.type)[save->i][save->j])->em);
-	}
+	facing = ft_dot_product(r->n_hit, light_d);
+	facing = facing > 0 ? facing : 0;
+	ft_mult_color_by_nb(&tmp1, *sf, facing);
+	ft_mult_color_by_color(&tmp2, tmp1, (((t_sph ***)obj.type)[SPH][save->i])->em);
 	return (tmp2);
 }
 
@@ -47,6 +34,8 @@ int		ft_diffuse_object(t_obj obj, t_r *r, t_c *color, t_c sf)
 	int		j;
 	t_r		new_r;
 	t_save	save;
+	int		trans;
+	t_v		light_d;
 
 	new_r = *r;
 	save.i = -1;
@@ -55,22 +44,33 @@ int		ft_diffuse_object(t_obj obj, t_r *r, t_c *color, t_c sf)
 	new_r.t1 = MAX;
 	new_r.tnear = MAX;
 	i = -1;
-	while (++i < NB_TYPE)
+	while (++i < obj.nb[SPH])
 	{
-		j = -1;
-		while (++j < obj.nb[i])
+		if (((((t_sph ***)obj.type)[SPH][i])->em.r > 0
+			 || (((t_sph ***)obj.type)[SPH][i])->em.g > 0
+			 || (((t_sph ***)obj.type)[SPH][i])->em.b > 0))
 		{
-			if (obj.intersect[i](&new_r, (obj.type)[i][j]) == 0)
+			trans = 1;
+			ft_vect_difference(&light_d, (((t_sph ***)obj.type)[SPH][i])->c, new_r.p_hit);
+			ft_normalize_vect(&light_d);
+			new_r.d_w = light_d;
+			j = -1;
+			while (++j < obj.nb[SPH])
 			{
-				if (new_r.t0 < new_r.tnear)
+				if (i != j)
 				{
-					new_r.tnear = new_r.t0;
-					save.i = i;
-					save.j = j;
+					if (obj.intersect[SPH](&new_r, (obj.type)[SPH][j]) == 0)
+					{
+						trans = 0;
+						break ;
+					}
 				}
 			}
+			save.i = i;
+			if (trans == 1)
+				ft_color_sum(color, *color, ft_hit_a_sphere_light(obj, &new_r, &save, &sf));
 		}
 	}
-	ft_color_sum(color, *color, ft_hit_a_sphere_light(obj, r, &save, &sf));
+	printf("%d, %d, %d\n", color->b, color->g, color->r);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 19:47:38 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/25 15:02:05 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define	HEIGHT			(1300.0)
 # define	WIDTH			(2400.0)
-# define	MAX_DEPTH		2
+# define	MAX_DEPTH		0
 # define	MIN				(-1000000000.0)
 # define	MAX				(1000000000.0)
 # define	E6				(0.000001)

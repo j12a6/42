@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/19 15:12:05 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 19:43:37 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/25 18:14:31 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj)
 	ft_find_sph_normal(r, sph->c, &inside);
 	if ((sph->refl > 0 || sph->trsp > 0) && obj.depth < MAX_DEPTH)
 	{
-		printf("CCCCCCCC\n");
 		eta = (inside == 1) ? sph->ior : 1 / sph->ior;
 		ft_find_sph_refl_clr(r, &clr.refl, obj, &clr.fnel);
 		ft_init_color(&clr.refr, 0, 0, 0);

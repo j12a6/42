@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 15:02:27 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 19:40:01 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/25 14:21:28 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,7 @@ int		key_hook(int key, t_mlx *mlx)
 
 int		expose_hook(t_mlx *mlx)
 {
-	ft_draw(mlx);
-
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	ft_putendl_fd("FINI", 2);
 	return (0);
 }
@@ -152,6 +151,7 @@ int		main(int ac, char **av)
 									&(mlx.i.endian));
 	mlx_key_hook(mlx.win, key_hook, &mlx);
 	raytracer(&mlx.obj, cam);
+	ft_draw(&mlx);
 	mlx_expose_hook(mlx.win, expose_hook, &mlx);
 	mlx_loop(mlx.mlx);
 	return (0);

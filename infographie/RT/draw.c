@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/20 15:12:32 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/21 11:40:00 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/25 15:18:37 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,5 @@ int		ft_draw(t_mlx *mlx)
 		}
 		++j;
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	return (0);
 }
