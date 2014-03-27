@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 11:38:59 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 19:07:06 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define	MAX				(1000000000.0)
 # define	E6				(0.000001)
 # define	E4				(0.0001)
-# define	NB_TYPE			4
+# define	NB_TYPE			6
 # define	BOX				0
 # define	SPH				1
 # define	PLA				2
@@ -59,6 +59,8 @@ typedef struct		s_r
 	double			t1;
 	double			tnear;
 	t_c				color;
+	int				hit_i;
+	int				hit_j;
 }					t_r;
 
 typedef struct		s_box
@@ -101,22 +103,19 @@ typedef struct		s_dis
 typedef struct		s_cyl
 {
 	t_v				c;
-	t_v				a;
 	double			r;
 	t_c				sf;
-	double			rotx;
-	double			roty;
-	double			rotz;
-	int				**cyl2w;			
+	char			flag;
 }					t_cyl;
 
 typedef struct		s_con
 {
 	t_v				c;
-	t_v				a;
-	double			o;
 	t_c				sf;
-}
+	char			flag;
+	double			cst;
+}					t_con;
+
 
 typedef struct		s_save
 {
@@ -146,7 +145,7 @@ typedef struct		s_obj
 	void			***type;
 	int				*nb;
 	int				(*intersect[NB_TYPE])(t_r *, void *);
-	int				(*treatment[NB_TYPE])(void *, t_c *);
+	int				(*treatment[NB_TYPE])(void *, t_c *, struct s_obj *, t_r *r);
 	t_c				bg_clr;
 }					t_obj;
 
@@ -181,8 +180,13 @@ void		ft_normalize_vect(t_v *vect);
 double		ft_vect_norm(t_v *vect);
 
 /* Matrices */
-double		**ft_init_matrix(t_v *v1, t_v *v2, t_v *v3, t_v *trans);
+int			ft_matrix_alloc(double ***mat);
+double		**ft_init_matrix(t_v *v1, t_v *v2, t_v *v3);
 void		ft_mult_vect_by_matrix(t_v *v, double **mat, t_v v1);
+void		ft_mult_matrix_by_matrix(double ***mat, double **m, double **n);
+void		ft_init_rotation_matrix_x(double ***mat, double rotx);
+void		ft_init_rotation_matrix_y(double ***mat, double roty);
+void		ft_init_rotation_matrix_z(double ***mat, double rotz);
 
 /* Colors */
 
@@ -203,11 +207,15 @@ int			ft_intersect_a_disk(t_r *r, void *data);
 int			ft_intersect_a_box(t_r *r, void *data);
 int			ft_intersect_a_sphere(t_r *r, void *data);
 int			ft_intersect_a_plane(t_r *r, void *data);
+int			ft_intersect_a_cylinder(t_r *r, void *data);
+int			ft_intersect_a_cone(t_r *r, void *data);
 
-int			ft_treat_a_box(void *data, t_c *color);
-int			ft_treat_a_sphere(void *data, t_c *color);
-int			ft_treat_a_disk(void *data, t_c *color);
-int			ft_treat_a_plane(void *data, t_c *color);
+int			ft_treat_a_box(void *data, t_c *color, t_obj *obj, t_r *r);
+int			ft_treat_a_sphere(void *data, t_c *color, t_obj *obj, t_r *r);
+int			ft_treat_a_disk(void *data, t_c *color, t_obj *obj, t_r *r);
+int			ft_treat_a_plane(void *data, t_c *color, t_obj *obj, t_r *r);
+int			ft_treat_a_cylinder(void *data, t_c *color, t_obj *obj, t_r *r);
+int			ft_treat_a_cone(void *data, t_c *color, t_obj *obj, t_r *r);
 double		ft_mix(double a, double b, double mix);
 int			ft_init_object_structure(t_obj *obj);
 
@@ -216,5 +224,9 @@ t_c			ft_trace(t_obj obj, t_r *r, t_save *save);
 int			ft_do_scene(t_obj *obj);
 
 void		ft_swap(double *tmin, double *tmax);
+
+double		ft_hit_light(t_r *r, t_obj *obj);
+
+int			ft_init_save_and_ray(t_r *r, t_save *save);
 
 #endif	/* !RT_H */

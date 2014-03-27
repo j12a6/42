@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 15:02:27 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 09:19:26 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 19:10:05 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	ft_mix(double a, double b, double mix)
 	return (b * mix + a * (1 - mix));
 }
 
-int		ft_init_changer_nom(t_r *r, t_save *save)
+int		ft_init_save_and_ray(t_r *r, t_save *save)
 {
 	r->t0 = MAX;
 	r->t1 = MAX;
@@ -41,7 +41,7 @@ t_c		ft_trace(t_obj obj, t_r *r, t_save *save)
 	int			j;
 	t_c			color;//ATTENTION !!!!!!! Il faut l'initialiser dans chaque treatment
 
-	ft_init_changer_nom(r, save);
+	ft_init_save_and_ray(r, save);
 	i = -1;
 	while (++i < NB_TYPE)
 	{
@@ -64,7 +64,10 @@ t_c		ft_trace(t_obj obj, t_r *r, t_save *save)
 	}
 	if (save->i == -1)
 		return (obj.bg_clr);
-	obj.treatment[save->i]((obj.type)[save->i][save->j], &color);
+	r->hit_i = save->i;
+	r->hit_j = save->j;
+	obj.treatment[save->i]((obj.type)[save->i][save->j],
+						   &color, &obj, r);
 	return (color);
 }
 
@@ -86,7 +89,7 @@ int			raytracer(t_obj *obj, t_cam cam)
 	t_obj		new_obj;
 
 	new_obj = *obj;
-	if (!(c2w = ft_init_matrix(&cam.b.vx, &cam.b.vy, &cam.b.vz, &cam.trans)))
+	if (!(c2w = ft_init_matrix(&cam.b.vx, &cam.b.vy, &cam.b.vz)))
 		return (-1);
 	ft_init_ray(&r);
 	//ft_mult_vect_by_matrix(&r.o, c2w, ro_c);
