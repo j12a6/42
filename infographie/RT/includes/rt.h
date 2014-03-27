@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/25 15:02:05 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 10:48:51 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct		s_box
 	double			ymax;
 	double			zmin;
 	double			zmax;
+	t_c				sf;
 }					t_box;
 
 typedef struct		s_sph
@@ -86,6 +87,7 @@ typedef struct		s_pla
 {
 	t_v				c;
 	t_v				n;
+	t_c				sf;
 }					t_pla;
 
 typedef struct		s_dis
@@ -93,7 +95,13 @@ typedef struct		s_dis
 	t_v				c;
 	t_v				n;
 	double			r;
+	t_c				sf;
 }					t_dis;
+
+typedef struct		s_cyl
+{
+	t_v				
+}
 
 typedef struct		s_save
 {
@@ -123,7 +131,7 @@ typedef struct		s_obj
 	void			***type;
 	int				*nb;
 	int				(*intersect[NB_TYPE])(t_r *, void *);
-	int				(*treatment[NB_TYPE])(t_r *, void *, t_c *, struct s_obj);
+	int				(*treatment[NB_TYPE])(void *, t_c *);
 	t_c				bg_clr;
 }					t_obj;
 
@@ -181,10 +189,10 @@ int			ft_intersect_a_box(t_r *r, void *data);
 int			ft_intersect_a_sphere(t_r *r, void *data);
 int			ft_intersect_a_plane(t_r *r, void *data);
 
-int			ft_treat_a_box(t_r *r, void *data, t_c *color, t_obj obj);
-int			ft_treat_a_sphere(t_r *r, void *data, t_c *color, t_obj obj);
-int			ft_treat_a_disk(t_r *r, void *data, t_c *color, t_obj obj);
-int			ft_treat_a_plane(t_r *r, void *data, t_c *color, t_obj obj);
+int			ft_treat_a_box(void *data, t_c *color);
+int			ft_treat_a_sphere(void *data, t_c *color);
+int			ft_treat_a_disk(void *data, t_c *color);
+int			ft_treat_a_plane(void *data, t_c *color);
 double		ft_mix(double a, double b, double mix);
 int			ft_init_object_structure(t_obj *obj);
 

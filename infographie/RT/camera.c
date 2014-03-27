@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:42:05 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 18:50:03 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/26 10:23:37 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,6 @@ int		ft_find_pixel_pos_on_screen(t_v *rp_c, int i, int j)
 	fov = *ft_set_fov_angle();
 	rp_c->x = (2 * ((i + 0.5) / WIDTH) - 1) * ratio * tan(fov / 2.0);
 	rp_c->y = (1 - 2 * ((j + 0.5) / HEIGHT)) * tan(fov / 2.0);
-	rp_c->z = -2;
+	rp_c->z = -100;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 15:02:27 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/25 14:21:28 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 09:19:26 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,24 +48,23 @@ t_c		ft_trace(t_obj obj, t_r *r, t_save *save)
 		j = -1;
 		while (++j < obj.nb[i])
 		{
-/*	printf("%f, %f, %f\n", ((t_sph **)obj.type)[i][j].c.x, ((t_sph **)obj.type)[i][j].c.y, ((t_sph **)obj.type)[i][j].c.z);
-*/
+//printf("%f, %f, %f\n", (((t_sph ***)obj.type)[i][j])->c.x, (((t_sph ***)obj.type)[i][j])->c.y, (((t_sph ***)obj.type)[i][j])->c.z);
 			if (obj.intersect[i](r, (obj.type)[i][j]) == 0)
 			{
-///**/printf("r_in = %f, %f, %f\n", r->d_w.x, r->d_w.y, r->d_w.z);
+//printf("r_in = %f, %f, %f\n", r->d_w.x, r->d_w.y, r->d_w.z);
 				if (r->t0 < r->tnear)
 				{
 					r->tnear = r->t0;
 					save->i = i;
 					save->j = j;
+//printf("%d\n", save->j);
 				}
 			}
 		}
 	}
 	if (save->i == -1)
 		return (obj.bg_clr);
-/*	printf("%f, %f\n, r->t0, r->t1);*/
-	obj.treatment[save->i](r, (obj.type)[save->i][save->j], &color, obj);
+	obj.treatment[save->i]((obj.type)[save->i][save->j], &color);
 	return (color);
 }
 
@@ -105,7 +104,7 @@ int			raytracer(t_obj *obj, t_cam cam)
 			ft_normalize_vect(&r.d_w);
 			obj->pixel[j][i] = ft_trace(new_obj, &r, &save);
 			// attention fonction au dessus, pas sur de & de 'r'
-///**/printf("b = %d && g = %d && r = %d\n", (obj->pixel[j][i]).b, (obj->pixel[j][i]).g, (obj->pixel[j][i]).r);
+//printf("b = %d && g = %d && r = %d\n", (obj->pixel[j][i]).b, (obj->pixel[j][i]).g, (obj->pixel[j][i]).r);
 		}
 	}
 	return (0);

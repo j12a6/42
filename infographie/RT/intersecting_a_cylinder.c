@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   treat_a_disk.c                                     :+:      :+:    :+:   */
+/*   intersecting_a_cylinder.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/03/20 17:40:53 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 09:27:02 by jaubert          ###   ########.fr       */
+/*   Created: 2014/03/27 10:45:51 by jaubert           #+#    #+#             */
+/*   Updated: 2014/03/27 10:48:54 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		ft_treat_a_disk(void *data, t_c *color)
+int		ft_intersect_a_cylinder(t_r *r, void *data)
 {
-	t_dis	*dis;
-
-	dis = (t_dis *)data;
-	*color = dis->sf;
+	t_v		
 	return (0);
 }
