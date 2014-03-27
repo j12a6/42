@@ -6,16 +6,13 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/18 13:38:26 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 10:48:56 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 11:21:07 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rt.h"
-//ATTENTION !!!!!!!!!!!!!!!! Dans le cas ou on est dans la sphere -> jeff veut faire chier le monde
 
-#include <stdio.h>
-#include "libft.h"
 static int	ft_find_sphere_inter(t_r *r, t_sph *sph)
 {
 	t_v			o_to_c;

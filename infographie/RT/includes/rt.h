@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 10:48:51 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 11:38:59 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,22 @@ typedef struct		s_dis
 
 typedef struct		s_cyl
 {
-	t_v				
+	t_v				c;
+	t_v				a;
+	double			r;
+	t_c				sf;
+	double			rotx;
+	double			roty;
+	double			rotz;
+	int				**cyl2w;			
+}					t_cyl;
+
+typedef struct		s_con
+{
+	t_v				c;
+	t_v				a;
+	double			o;
+	t_c				sf;
 }
 
 typedef struct		s_save

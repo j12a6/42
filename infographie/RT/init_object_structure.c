@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/20 16:26:25 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 10:40:25 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 11:39:02 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,32 @@ int		ft_init_object_structure(t_obj *obj)
 
 #include <stdio.h>
 
+int		ft_init_cyl2w(int ***cyl2w, double rotx, double roty, double rotz)
+{
+	int		i;
 
+	if (!(*cyl2w = (int **)gmalloc(sizeof(int *) * 3)))
+		return (-1);
+	i = -1;
+	while (++i < 3)
+	{
+		if (!((*cyl2w)[i] = (t_cyl *)gmalloc(sizeof(int) * 3)))
+			return (-1);
+	}
+	cyl2w[0][0] = 1;
+	cyl2w[1][0] = 1;
+	cyl2w[2][0] = 1;
+	cyl2w[0][1] = 1;
+	cyl2w[1][1] = 1;
+	cyl2w[2][1] = 1;
+	cyl2w[0][2] = 1;
+	cyl2w[1][2] = 1;
+	cyl2w[2][2] = 1;
+	
+
+
+	return (0);
+}
 
 int		ft_do_scene(t_obj *obj)
 {
@@ -144,5 +169,21 @@ int		ft_do_scene(t_obj *obj)
 	ldis[0]->r = 1;
 	ft_init_vect(&ldis[0]->n, 0, -1, -1);
 	ft_init_color(&ldis[0]->sf, 80, 0, 80);
+	
+	obj->nb[SCYL] = 1;
+	if (!(((t_cyl ***)obj->type)[CYL]
+		  = (t_cyl **)gmalloc(sizeof(t_cyl *) * obj->nb[CYL])))
+		return (-1);
+	lcyl = ((t_cyl ***)obj->type)[CYL];
+	i = -1;
+	while (++i < obj->nb[CYL])
+	{
+		if (!(lcyl[i] = (t_cyl *)gmalloc(sizeof(t_cyl))))
+			return (-1);
+	}
+	ft_init_vect(&lcyl[0]->c, -8, 0, -2000);
+	ft_init_vect(&lcyl[0]->a, 0, 1, 0);
+	lcyl[0]->r = 1;
+	ft_init_color(&lcyl[0]->sf, 80, 0, 80);
 	return (0);
 }
