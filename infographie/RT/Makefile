@@ -6,7 +6,7 @@
 #    By: jaubert <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/03/20 15:44:10 by jaubert           #+#    #+#              #
-#    Updated: 2014/03/27 18:44:52 by jaubert          ###   ########.fr        #
+#    Updated: 2014/03/27 23:12:16 by jaubert          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ HDDIR =			./libft/includes/
 
 CFILE =			main.c							\
 				sol_equ_quadratic.c				\
+				raytracer.c						\
 				camera.c						\
 				operations_on_colors.c			\
 				operations_on_vectors.c			\
@@ -43,9 +44,17 @@ CFILE =			main.c							\
 				treat_a_plane.c					\
 				treat_a_cone.c					\
 				treat_a_cylinder.c				\
-				ft_diffuse_object.c				\
 				ft_hit_light.c					\
+				scene1.c						\
+				scene1_disk.c					\
+				scene1_plane.c					\
+				scene1_sphere.c					\
+				scene2.c						\
+				scene2_disk.c					\
+				scene2_plane.c					\
+				scene2_sphere.c					\
 				ft_error.c
+
 
 OBJ =			$(CFILE:.c=.o)
 

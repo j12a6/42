@@ -6,16 +6,11 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/27 10:45:51 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 18:26:39 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 21:08:05 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-
-
-#include <stdio.h>
-#include "libft.h"
 
 void	ft_find_coeff(t_r *r, t_v *c, t_cyl *cyl)
 {
@@ -36,7 +31,6 @@ void	ft_find_coeff(t_r *r, t_v *c, t_cyl *cyl)
 		c->x = r->d_w.x * r->d_w.x + r->d_w.y * r->d_w.y;
 		c->y = 2 * (r->o_w.x * r->d_w.x + r->o_w.y * r->d_w.y);
 		c->z = r->o_w.x * r->o_w.x + r->o_w.y * r->o_w.y - cyl->r * cyl->r;
-
 	}
 }
 

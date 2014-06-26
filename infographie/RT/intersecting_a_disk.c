@@ -6,14 +6,13 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/18 14:47:21 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 10:31:38 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 21:34:20 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rt.h"
 
-#include "libft.h"
 int		ft_intersect_a_disk(t_r *r, void *data)
 {
 	t_v			o_to_c;

@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/12 19:34:30 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/12 19:34:33 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 21:25:45 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int				ft_list_mal(int i, void *s)
 	if (mal == NULL && i == 1)
 	{
 		if (!(mal = ft_lstnew_mal(s)))
-			return (0) ;
+			return (0);
 	}
 	else if (i == 1)
 	{

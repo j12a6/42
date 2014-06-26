@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/27 15:53:56 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 20:22:53 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 22:41:00 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		ft_init_normal(t_v *n_hit, t_v p_hit, t_con *con)
 	}
 }
 
-int		ft_treat_a_cone(void *data, t_c *color, t_obj *obj, t_r *r)
+int			ft_treat_a_cone(void *data, t_c *color, t_obj *obj, t_r *r)
 {
 	t_con		*con;
 	double		mult;
@@ -43,6 +43,7 @@ int		ft_treat_a_cone(void *data, t_c *color, t_obj *obj, t_r *r)
 	ft_mult_vect_by_nb(&r->p_hit, r->d_w, r->tnear);
 	ft_vect_sum(&r->p_hit, r->p_hit, r->o_w);
 	ft_init_normal(&r->n_hit, r->p_hit, con);
+	ft_normalize_vect(&r->n_hit);
 	mult = ft_hit_light(r, obj);
 	ft_init_color(color, con->sf.b * mult, con->sf.g * mult, con->sf.r * mult);
 	return (0);

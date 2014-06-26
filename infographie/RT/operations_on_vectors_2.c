@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/17 10:24:09 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/24 14:28:38 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 21:09:32 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	ft_vect_opposite(t_v *vect, t_v v1)
 	vect->x = -v1.x;
 	vect->y = -v1.y;
 	vect->z = -v1.z;
-
 }
 
 void	ft_vect_sum(t_v *vect, t_v v1, t_v v2)

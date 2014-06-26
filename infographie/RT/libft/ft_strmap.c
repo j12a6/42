@@ -6,7 +6,7 @@
 /*   By: jaubert <jaubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/22 13:27:31 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/20 16:18:50 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 21:26:04 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strmap(char const *s, char (*f)(char))
 
 	if (s == NULL || f == NULL)
 		return (NULL);
-	if (!(str = (char *)gmalloc(sizeof(*str) *(ft_strlen(s) + 1))))
+	if (!(str = (char *)gmalloc(sizeof(*str) * (ft_strlen(s) + 1))))
 		return (NULL);
 	i = 0;
 	while (s[i])

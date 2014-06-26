@@ -6,16 +6,12 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:42:05 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 15:21:23 by makoudad         ###   ########.fr       */
+/*   Updated: 2014/03/27 20:34:48 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rt.h"
-
-
-#include <stdio.h>
-
 
 double	*ft_set_fov_angle(void)
 {

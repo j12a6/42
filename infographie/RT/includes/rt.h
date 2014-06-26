@@ -6,14 +6,14 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/03/14 11:43:47 by jaubert           #+#    #+#             */
-/*   Updated: 2014/03/27 19:07:06 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 23:10:48 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef		RT_H
 # define	RT_H
 
-# define	HEIGHT			(1300.0)
+# define	HEIGHT			(1200.0)
 # define	WIDTH			(2400.0)
 # define	MAX_DEPTH		0
 # define	MIN				(-1000000000.0)
@@ -116,7 +116,6 @@ typedef struct		s_con
 	double			cst;
 }					t_con;
 
-
 typedef struct		s_save
 {
 	int				i;
@@ -145,7 +144,8 @@ typedef struct		s_obj
 	void			***type;
 	int				*nb;
 	int				(*intersect[NB_TYPE])(t_r *, void *);
-	int				(*treatment[NB_TYPE])(void *, t_c *, struct s_obj *, t_r *r);
+	int				(*treatment[NB_TYPE])(void *, t_c *, struct s_obj *,
+											t_r *r);
 	t_c				bg_clr;
 }					t_obj;
 
@@ -166,67 +166,63 @@ typedef struct		s_mlx
 	t_obj			obj;
 }					t_mlx;
 
-int			ft_nearest_solution(double, double, double, t_r *);
+int					ft_init_sphere1(t_obj *obj);
+int					ft_init_sphere2(t_obj *obj);
+int					ft_init_plane1(t_obj *obj);
+int					ft_init_plane2(t_obj *obj);
+int					ft_init_disk1(t_obj *obj);
+int					ft_init_disk2(t_obj *obj);
+int					ft_scene1(t_obj *obj);
+int					ft_scene2(t_obj *obj);
+int					ft_nearest_solution(double a, double b, double c, t_r *r);
+int					raytracer(t_obj *obj, t_cam cam);
+void				ft_init_vect(t_v *vect, double x, double y, double z);
+void				ft_vect_opposite(t_v *vect, t_v v1);
+void				ft_vect_sum(t_v *vect, t_v v1, t_v v2);
+void				ft_vect_difference(t_v *vect, t_v vect1, t_v vect2);
+double				ft_dot_product(t_v vect1, t_v vect2);
+void				ft_cross_product(t_v *vect, t_v *vect1, t_v *vect2);
+void				ft_mult_vect_by_nb(t_v *vext, t_v v1, double scalar);
+void				ft_normalize_vect(t_v *vect);
+double				ft_vect_norm(t_v *vect);
+int					ft_matrix_alloc(double ***mat);
+double				**ft_init_matrix(t_v *v1, t_v *v2, t_v *v3);
+void				ft_mult_vect_by_matrix(t_v *v, double **mat, t_v v1);
+void				ft_mult_matrix_by_matrix(double ***mat, double **m,
+												double **n);
+void				ft_init_rotation_matrix_x(double ***mat, double rotx);
+void				ft_init_rotation_matrix_y(double ***mat, double roty);
+void				ft_init_rotation_matrix_z(double ***mat, double rotz);
+void				ft_mult_color_by_nb(t_c *color, t_c c1, double scalar);
+void				ft_init_color(t_c *color, int b, int g, int r);
+void				ft_color_sum(t_c *color, t_c color1, t_c color2);
+void				ft_mult_color_by_color(t_c *color, t_c color1, t_c color2);
+int					ft_find_pixel_pos_on_screen(t_v *rp_c, int i, int j);
+void				ft_init_camera(t_cam *cam);
+int					ft_error(char *s1, char *s2, int val);
+int					ft_draw(t_mlx *mlx);
+int					ft_intersect_a_disk(t_r *r, void *data);
+int					ft_intersect_a_box(t_r *r, void *data);
+int					ft_intersect_a_sphere(t_r *r, void *data);
+int					ft_intersect_a_plane(t_r *r, void *data);
+int					ft_intersect_a_cylinder(t_r *r, void *data);
+int					ft_intersect_a_cone(t_r *r, void *data);
+int					ft_treat_a_box(void *data, t_c *color, t_obj *obj, t_r *r);
+int					ft_treat_a_sphere(void *data, t_c *color, t_obj *obj,
+										t_r *r);
+int					ft_treat_a_disk(void *data, t_c *color, t_obj *obj, t_r *r);
+int					ft_treat_a_plane(void *data, t_c *color, t_obj *obj,
+										t_r *r);
+int					ft_treat_a_cylinder(void *data, t_c *color, t_obj *obj,
+										t_r *r);
+int					ft_treat_a_cone(void *data, t_c *color, t_obj *obj, t_r *r);
+double				ft_mix(double a, double b, double mix);
+int					ft_init_object_structure(t_obj *obj);
+int					ft_diffuse_object(t_obj obj, t_r *r, t_c *color, t_c sf);
+t_c					ft_trace(t_obj obj, t_r *r, t_save *save);
+int					ft_do_scene(t_obj *obj, char *map);
+void				ft_swap(double *tmin, double *tmax);
+double				ft_hit_light(t_r *r, t_obj *obj);
+int					ft_init_save_and_ray(t_r *r, t_save *save);
 
-/* Vectors */
-void		ft_init_vect(t_v *vect, double x, double y, double z);
-void		ft_vect_opposite(t_v *vect, t_v v1);
-void		ft_vect_sum(t_v *vect, t_v v1, t_v v2);
-void		ft_vect_difference(t_v *vect, t_v vect1, t_v vect2);
-double		ft_dot_product(t_v vect1, t_v vect2);
-void		ft_cross_product(t_v *vect, t_v *vect1, t_v *vect2);
-void		ft_mult_vect_by_nb(t_v *vext, t_v v1, double scalar);
-void		ft_normalize_vect(t_v *vect);
-double		ft_vect_norm(t_v *vect);
-
-/* Matrices */
-int			ft_matrix_alloc(double ***mat);
-double		**ft_init_matrix(t_v *v1, t_v *v2, t_v *v3);
-void		ft_mult_vect_by_matrix(t_v *v, double **mat, t_v v1);
-void		ft_mult_matrix_by_matrix(double ***mat, double **m, double **n);
-void		ft_init_rotation_matrix_x(double ***mat, double rotx);
-void		ft_init_rotation_matrix_y(double ***mat, double roty);
-void		ft_init_rotation_matrix_z(double ***mat, double rotz);
-
-/* Colors */
-
-void		ft_mult_color_by_nb(t_c *color, t_c c1, double scalar);
-void		ft_init_color(t_c *color, int b, int g, int r);
-void		ft_color_sum(t_c *color, t_c color1, t_c color2);
-void		ft_mult_color_by_color(t_c *color, t_c color1, t_c color2);
-
-/* Camera */
-int			ft_find_pixel_pos_on_screen(t_v *rp_c, int i, int j);
-void		ft_init_camera(t_cam *cam);
-
-/* Others */
-int			ft_error(char *s1, char *s2, int val);
-int			ft_draw(t_mlx *mlx);
-
-int			ft_intersect_a_disk(t_r *r, void *data);
-int			ft_intersect_a_box(t_r *r, void *data);
-int			ft_intersect_a_sphere(t_r *r, void *data);
-int			ft_intersect_a_plane(t_r *r, void *data);
-int			ft_intersect_a_cylinder(t_r *r, void *data);
-int			ft_intersect_a_cone(t_r *r, void *data);
-
-int			ft_treat_a_box(void *data, t_c *color, t_obj *obj, t_r *r);
-int			ft_treat_a_sphere(void *data, t_c *color, t_obj *obj, t_r *r);
-int			ft_treat_a_disk(void *data, t_c *color, t_obj *obj, t_r *r);
-int			ft_treat_a_plane(void *data, t_c *color, t_obj *obj, t_r *r);
-int			ft_treat_a_cylinder(void *data, t_c *color, t_obj *obj, t_r *r);
-int			ft_treat_a_cone(void *data, t_c *color, t_obj *obj, t_r *r);
-double		ft_mix(double a, double b, double mix);
-int			ft_init_object_structure(t_obj *obj);
-
-int			ft_diffuse_object(t_obj obj, t_r *r, t_c *color, t_c sf);
-t_c			ft_trace(t_obj obj, t_r *r, t_save *save);
-int			ft_do_scene(t_obj *obj);
-
-void		ft_swap(double *tmin, double *tmax);
-
-double		ft_hit_light(t_r *r, t_obj *obj);
-
-int			ft_init_save_and_ray(t_r *r, t_save *save);
-
-#endif	/* !RT_H */
+#endif

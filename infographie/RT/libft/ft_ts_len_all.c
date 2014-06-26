@@ -6,7 +6,7 @@
 /*   By: jaubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/26 10:50:15 by jaubert           #+#    #+#             */
-/*   Updated: 2014/02/01 12:09:58 by jaubert          ###   ########.fr       */
+/*   Updated: 2014/03/27 21:26:40 by jaubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_ts_len_all(char **ts)
 	i = 0;
 	while (ts[i])
 	{
-		len	+= (int)ft_strlen(ts[i]);
+		len += (int)ft_strlen(ts[i]);
 		++i;
 	}
 	return (len);
